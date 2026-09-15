@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { emptySnapshot, loadSnapshot } from '../src/data/provider.js';
+import { emptySnapshot, loadClubCatalog, loadSnapshot } from '../src/data/provider.js';
 
 test('la production ne remplace jamais une source absente par des données de démo', async () => {
   const originalFetch = globalThis.fetch;
@@ -36,4 +36,14 @@ test('l’état vide est un nouvel objet immuable entre deux lectures', () => {
   const second = emptySnapshot();
   first.sessions.push({ id: 'x' });
   assert.deepEqual(second.sessions, []);
+});
+
+test('les séances club publiques restent disponibles sans catalogue Supabase', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => ({ ok: true, json: async () => ({ day: 2, sessions: [{ date: '2026-09-15', name: 'Pyramide' }] }) });
+  try {
+    assert.deepEqual(await loadClubCatalog(), { day: 2, sessions: [{ date: '2026-09-15', name: 'Pyramide' }] });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });

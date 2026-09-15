@@ -4,7 +4,7 @@ import PlanningScreen from './screens/PlanningScreen.jsx';
 import AnalysisScreen from './screens/AnalysisScreen.jsx';
 import PpgScreen, { ExerciseSheet } from './screens/PpgScreen.jsx';
 import SessionScreen from './screens/SessionScreen.jsx';
-import { initialSnapshot, loadSnapshot } from './data/provider.js';
+import { initialSnapshot, loadClubCatalog, loadSnapshot } from './data/provider.js';
 import { INK, RULE, HAIR, MUTED, button } from './lib/ui.js';
 import { isoDate } from './data/model.js';
 import { buildPlan } from './data/plan.js';
@@ -92,7 +92,7 @@ export default function App({ repository }) {
       // séances, la montre ne les connaît pas. Absent, le plan retombe sur la
       // médiane des mardis passés.
       const catalogs = await repository.loadCatalogs();
-      const clubData = catalogs.club_sessions ?? null;
+      const clubData = catalogs.club_sessions ?? await loadClubCatalog();
       const ppgData = catalogs.ppg_library ?? null;
       setLibrary(ppgData);
 

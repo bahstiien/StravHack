@@ -64,6 +64,15 @@ export function initialSnapshot({ allowFixtures = Boolean(import.meta.env?.DEV) 
   return allowFixtures ? fixtureSnapshot() : emptySnapshot('Connexion aux données en cours…');
 }
 
+export async function loadClubCatalog() {
+  try {
+    const catalog = await getJSON('/club-sessions.json');
+    return Array.isArray(catalog?.sessions) ? catalog : null;
+  } catch {
+    return null;
+  }
+}
+
 /** @returns {Promise<import('./model.js').Snapshot>} */
 export async function loadSnapshot({ allowFixtures = Boolean(import.meta.env?.DEV) } = {}) {
   const base = allowFixtures ? fixtureSnapshot() : emptySnapshot();
