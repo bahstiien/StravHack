@@ -1,9 +1,8 @@
-export async function verifyEmailCode(client, email, code) {
+export async function signInWithPassword(client, email, password) {
   const normalizedEmail = String(email || '').trim();
-  const token = String(code || '').replace(/\D/g, '');
   if (!/^\S+@\S+\.\S+$/.test(normalizedEmail)) throw new Error('Adresse e-mail invalide.');
-  if (!/^\d{6}$/.test(token)) throw new Error('Le code doit contenir 6 chiffres.');
-  const { error } = await client.auth.verifyOtp({ email: normalizedEmail, token, type: 'email' });
-  if (error) throw new Error('Code invalide ou expiré. Demandez un nouveau code.');
+  if (typeof password !== 'string' || password.length < 8) throw new Error('Le mot de passe doit contenir au moins 8 caractères.');
+  const { error } = await client.auth.signInWithPassword({ email: normalizedEmail, password });
+  if (error) throw new Error('Adresse e-mail ou mot de passe incorrect.');
   return true;
 }
