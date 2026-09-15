@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import WeekScreen from './screens/WeekScreen.jsx';
+import PlanningScreen from './screens/PlanningScreen.jsx';
 import AnalysisScreen from './screens/AnalysisScreen.jsx';
 import PpgScreen, { ExerciseSheet } from './screens/PpgScreen.jsx';
 import SessionScreen from './screens/SessionScreen.jsx';
@@ -34,9 +35,11 @@ import {
 } from './data/checkin-store.js';
 import { createWorkoutFeedback, applyWorkoutFeedback } from './data/post-workout-feedback.js';
 import { normalizeLoadLevel } from './data/load-level.js';
+import { buildGoalProjection } from './data/planning-calendar.js';
+import { REMINDER_PREFERENCES_DEFAULTS } from './data/supabase-repository.js';
 
 const TABS = [
-  { id: 'week', label: 'SEMAINE', icon: <><rect x="3" y="5" width="18" height="16" /><path d="M3 10h18M8 3v4M16 3v4" /></> },
+  { id: 'week', label: 'PLANNING', icon: <><rect x="3" y="5" width="18" height="16" /><path d="M3 10h18M8 3v4M16 3v4" /></> },
   { id: 'ana', label: 'ANALYSE', icon: <path d="M2 16l5-9 4 6 3.5-11L18 16l4-6" /> },
   { id: 'ppg', label: 'PPG', icon: <path d="M3 9v6M6 6v12M18 6v12M21 9v6M6 12h12" /> },
   { id: 'set', label: 'RÉGLAGES', icon: <><circle cx="12" cy="12" r="3.2" /><path d="M19.4 14a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V22a2 2 0 1 1-4 0v-.2A1.6 1.6 0 0 0 7.5 20l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 2 14.6H2a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 3.7 8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9 3.7V2a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H22a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.4 1.2z" /></> },
@@ -56,6 +59,9 @@ export default function App({ repository }) {
   const [library, setLibrary] = useState(null);
   const [planning, setPlanning] = useState({ decisions: [], availability: {}, exceptions: [], drafts: {} });
   const [dataReady, setDataReady] = useState(false);
+  const [reminderPreferences, setReminderPreferences] = useState(REMINDER_PREFERENCES_DEFAULTS);
+  const [reminderSaving, setReminderSaving] = useState(false);
+  const [reminderError, setReminderError] = useState('');
 
   // Le mode guidé : une séance en cours de déroulement, et la proposition de
   // reprendre celle qu'une fermeture accidentelle a laissée en plan.
@@ -104,6 +110,7 @@ export default function App({ repository }) {
         equipment: currentEquipment ?? equipment,
         loadLevel: currentLoadLevel ?? loadLevel,
         today: new Date(),
+        weeks: planningHorizonWeeks(currentGoals ?? goals, new Date()),
       });
 
       const feedbackApplied = applyWorkoutFeedback(plan, workoutFeedback, data.sessions);
@@ -136,9 +143,9 @@ export default function App({ repository }) {
     let active = true;
     (async () => {
       await importLocalStorageToSupabase({ repository });
-      const [settings, storedPlanning, run, storedFeedback] = await Promise.all([
+      const [settings, storedPlanning, run, storedFeedback, storedReminderPreferences] = await Promise.all([
         repository.loadSettings(), repository.loadPlanning(), repository.loadGuidedRun(),
-        repository.loadWorkoutFeedback(),
+        repository.loadWorkoutFeedback(), repository.loadReminderPreferences(),
       ]);
       if (!active) return;
       setGoals(settings.goals);
@@ -147,10 +154,27 @@ export default function App({ repository }) {
       setPlanning(storedPlanning);
       setPendingRun(run);
       setWorkoutFeedback(storedFeedback);
+      setReminderPreferences(storedReminderPreferences);
       setDataReady(true);
     })().catch((error) => { console.error(error); setDataReady(true); });
     return () => { active = false; };
   }, [repository]);
+
+  const onReminderPreferencesChange = useCallback((next) => {
+    setReminderPreferences(next);
+    setReminderSaving(true);
+    setReminderError('');
+    repository.saveReminderPreferences(next)
+      .then(setReminderPreferences)
+      .catch(() => setReminderError('Impossible d’enregistrer les rappels. Vérifie ta connexion puis réessaie.'))
+      .finally(() => setReminderSaving(false));
+  }, [repository]);
+
+  const goalProjection = useMemo(() => buildGoalProjection({
+    sessions: snapshot.sessions,
+    goals,
+    today,
+  }), [snapshot.sessions, goals, todayKey]);
 
   useEffect(() => { if (dataReady) refresh(); }, [dataReady, refresh]);
 
@@ -401,17 +425,28 @@ export default function App({ repository }) {
           }}>
             <div style={{ flex: 1, overflow: 'auto', WebkitOverflowScrolling: 'touch' }}>
               {tab === 'week' && (
-                <WeekScreen
-                  snapshot={snapshot}
-                  weekOffset={weekOffset}
-                  onShiftWeek={setWeekOffset}
-                  onOpenSession={setOpenSession}
-                  generating={syncing}
-                  today={today}
+                <PlanningScreen
+                  sessions={snapshot.sessions}
+                  goals={goals}
                   conflicts={snapshot.planningConflicts || []}
-                  checkin={checkin}
-                  onOpenCheckin={openCheckin}
-                  onEditCheckin={() => openCheckinForm(true)}
+                  mountainBlocks={mountainBlocksFrom(snapshot.sessions)}
+                  projection={goalProjection}
+                  today={today}
+                  onOpenSession={setOpenSession}
+                  renderWeek={() => (
+                    <WeekScreen
+                      snapshot={snapshot}
+                      weekOffset={weekOffset}
+                      onShiftWeek={setWeekOffset}
+                      onOpenSession={setOpenSession}
+                      generating={syncing}
+                      today={today}
+                      conflicts={snapshot.planningConflicts || []}
+                      checkin={checkin}
+                      onOpenCheckin={openCheckin}
+                      onEditCheckin={() => openCheckinForm(true)}
+                    />
+                  )}
                 />
               )}
               {tab === 'ana' && (
@@ -451,6 +486,10 @@ export default function App({ repository }) {
                   onSaveWeeklyAvailability={saveWeeklyAvailability}
                   onAddConstraint={addException}
                   onRemoveConstraint={removeException}
+                  reminderPreferences={reminderPreferences}
+                  onReminderPreferencesChange={onReminderPreferencesChange}
+                  reminderSaving={reminderSaving}
+                  reminderError={reminderError}
                 />
               )}
             </div>
@@ -758,6 +797,31 @@ function normalizeSessionChanges(changes) {
     ppgContent: changes.ppgContent,
     comment: changes.comment,
   };
+}
+
+function planningHorizonWeeks(goals, today) {
+  const todayTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+  const nextA = (goals || [])
+    .filter((goal) => goal.priority === 'A' && goal.date)
+    .map((goal) => new Date(`${goal.date}T12:00:00`))
+    .filter((date) => date.getTime() >= todayTime)
+    .sort((a, b) => a - b)[0];
+  if (!nextA) return 12;
+  return Math.max(2, Math.min(52, Math.ceil((nextA.getTime() - todayTime) / (7 * DAY)) + 1));
+}
+
+function mountainBlocksFrom(sessions) {
+  const blocks = (sessions || []).filter((session) => session.weekendBlock).reduce((result, session) => {
+    const id = session.blockId || session.date;
+    const previous = result[id];
+    return {
+      ...result,
+      [id]: previous
+        ? { ...previous, startDate: previous.startDate < session.date ? previous.startDate : session.date, endDate: previous.endDate > session.date ? previous.endDate : session.date }
+        : { id, startDate: session.date, endDate: session.date },
+    };
+  }, {});
+  return Object.values(blocks);
 }
 
 function dateOptionsFor(session, sessions, planning, conflicts) {

@@ -3,7 +3,9 @@ import test from 'node:test';
 
 import {
   DataStoreError,
+  REMINDER_PREFERENCES_DEFAULTS,
   createSupabaseDataRepository,
+  normalizeReminderPreferences,
 } from '../src/data/supabase-repository.js';
 import { importLocalStorageToSupabase } from '../src/data/supabase-import.js';
 
@@ -166,4 +168,72 @@ test('malformed local JSON is ignored without blocking valid data', async () => 
   const result = await importLocalStorageToSupabase({ repository, storage });
 
   assert.deepEqual(result, { imported: true, settings: false, planning: false, guidedRun: false, history: 0 });
+});
+
+test('reminder preferences use immutable defaults and normalize invalid values', () => {
+  const input = {
+    enabled: false,
+    preferredTime: '07:45',
+    beforeSessionMinutes: 99999,
+    dailyCheckin: false,
+    planningAlerts: true,
+    recoveryAlerts: 'yes',
+    goalReminders: true,
+    quietDays: ['dim', 'sam', 'sam', 'invalide'],
+  };
+
+  const normalized = normalizeReminderPreferences(input);
+  input.quietDays.push(2);
+
+  assert.deepEqual(normalized, {
+    ...REMINDER_PREFERENCES_DEFAULTS,
+    enabled: false,
+    preferredTime: '07:45',
+    beforeSessionMinutes: REMINDER_PREFERENCES_DEFAULTS.beforeSessionMinutes,
+    dailyCheckin: false,
+    quietDays: ['dim', 'sam'],
+  });
+  assert.notEqual(normalized, REMINDER_PREFERENCES_DEFAULTS);
+  assert.ok(Object.isFrozen(normalized));
+  assert.ok(Object.isFrozen(normalized.quietDays));
+});
+
+test('repository persists reminder preferences as an isolated user document', async () => {
+  const client = fakeClient();
+  const repository = createSupabaseDataRepository(client, { now: () => '2026-09-15T12:00:00.000Z' });
+  const preferences = { enabled: false, preferredTime: '06:30', quietDays: ['lun', 'ven'] };
+
+  const saved = await repository.saveReminderPreferences(preferences);
+  preferences.quietDays.push(6);
+  const loaded = await repository.loadReminderPreferences();
+
+  assert.deepEqual(loaded, saved);
+  assert.deepEqual(loaded.quietDays, ['lun', 'ven']);
+  const row = client.rows().find((item) => item.document_type === 'reminder_preferences');
+  assert.equal(row.user_id, 'user-1');
+  assert.equal(row.schema_version, 1);
+  const reminderSelect = client.calls.find((call) => call.operation === 'select'
+    && call.filters.some(([key, value]) => key === 'document_type' && value === 'reminder_preferences'));
+  assert.ok(reminderSelect.filters.some(([key, value]) => key === 'user_id' && value === 'user-1'));
+});
+
+test('missing reminder preferences load defaults without sharing mutable state', async () => {
+  const repository = createSupabaseDataRepository(fakeClient());
+  const first = await repository.loadReminderPreferences();
+  const second = await repository.loadReminderPreferences();
+
+  assert.deepEqual(first, REMINDER_PREFERENCES_DEFAULTS);
+  assert.deepEqual(second, REMINDER_PREFERENCES_DEFAULTS);
+  assert.notEqual(first, second);
+});
+
+test('repository rejects malformed reminder preferences', async () => {
+  const repository = createSupabaseDataRepository(fakeClient());
+
+  await assert.rejects(repository.saveReminderPreferences(null), (error) => {
+    assert.ok(error instanceof DataStoreError);
+    assert.equal(error.operation, 'saveReminderPreferences');
+    assert.match(error.message, /invalides/);
+    return true;
+  });
 });

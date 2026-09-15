@@ -14,9 +14,51 @@ export const DOCUMENT_TYPES = Object.freeze({
   checkinDraft: 'checkin_draft',
   workoutFeedback: 'workout_feedback',
   trainingLoadLevel: 'training_load_level',
+  reminderPreferences: 'reminder_preferences',
 });
 
 const clone = (value) => value == null ? value : structuredClone(value);
+
+export const REMINDER_PREFERENCES_DEFAULTS = Object.freeze({
+  enabled: true,
+  preferredTime: '08:00',
+  beforeSessionMinutes: 60,
+  dailyCheckin: true,
+  planningAlerts: true,
+  recoveryAlerts: true,
+  goalReminders: true,
+  quietDays: Object.freeze([]),
+});
+
+const validTime = (value) => typeof value === 'string'
+  && /^(?:[01]\d|2[0-3]):[0-5]\d$/.test(value);
+
+export function normalizeReminderPreferences(value = {}) {
+  const source = value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  const booleanValue = (key) => typeof source[key] === 'boolean'
+    ? source[key]
+    : REMINDER_PREFERENCES_DEFAULTS[key];
+  const validQuietDays = new Set(['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam']);
+  const quietDays = Array.isArray(source.quietDays)
+    ? [...new Set(source.quietDays.filter((day) => validQuietDays.has(day)))]
+    : [...REMINDER_PREFERENCES_DEFAULTS.quietDays];
+
+  return Object.freeze({
+    enabled: booleanValue('enabled'),
+    preferredTime: validTime(source.preferredTime)
+      ? source.preferredTime
+      : REMINDER_PREFERENCES_DEFAULTS.preferredTime,
+    beforeSessionMinutes: Number.isInteger(source.beforeSessionMinutes)
+      && source.beforeSessionMinutes >= 0 && source.beforeSessionMinutes <= 1440
+      ? source.beforeSessionMinutes
+      : REMINDER_PREFERENCES_DEFAULTS.beforeSessionMinutes,
+    dailyCheckin: booleanValue('dailyCheckin'),
+    planningAlerts: booleanValue('planningAlerts'),
+    recoveryAlerts: booleanValue('recoveryAlerts'),
+    goalReminders: booleanValue('goalReminders'),
+    quietDays: Object.freeze(quietDays),
+  });
+}
 
 export class DataStoreError extends Error {
   constructor(operation, cause) {
@@ -126,6 +168,22 @@ export function createSupabaseDataRepository(client, { now = () => new Date().to
       await saveDocument(DOCUMENT_TYPES.equipment, settings.equipment ?? [], 'saveSettings');
       await saveDocument(DOCUMENT_TYPES.trainingLoadLevel, settings.loadLevel ?? 4, 'saveSettings');
       return clone(settings);
+    },
+    async loadReminderPreferences() {
+      const stored = await loadDocument(DOCUMENT_TYPES.reminderPreferences, 'loadReminderPreferences');
+      return clone(normalizeReminderPreferences(stored ?? {}));
+    },
+    async saveReminderPreferences(preferences) {
+      if (!preferences || typeof preferences !== 'object' || Array.isArray(preferences)) {
+        throw new DataStoreError('saveReminderPreferences', new Error('préférences de rappels invalides'));
+      }
+      const normalized = normalizeReminderPreferences(preferences);
+      await saveDocument(
+        DOCUMENT_TYPES.reminderPreferences,
+        normalized,
+        'saveReminderPreferences',
+      );
+      return clone(normalized);
     },
     async loadPlanning() {
       const [decisions, availability, exceptions, drafts] = await Promise.all([

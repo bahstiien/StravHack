@@ -8,6 +8,7 @@ import {
   weeklyElevationTarget, canDo,
 } from '../data/goals.js';
 import AvailabilitySettings from '../components/AvailabilitySettings.jsx';
+import ReminderSettings, { updateReminderPreferences } from '../components/ReminderSettings.jsx';
 import { LOAD_LEVELS, loadLevelProfile } from '../data/load-level.js';
 
 const DAY = 86400000;
@@ -31,6 +32,7 @@ export default function SettingsScreen({
   weeklyAvailability, datedConstraints, onSaveWeeklyAvailability,
   onAddConstraint, onRemoveConstraint, checkinCount = 0, onClearCheckins,
   loadLevel = 4, onLoadLevelChange,
+  reminderPreferences, onReminderPreferencesChange, reminderSaving = false, reminderError = '',
 }) {
   const [draft, setDraft] = useState(null);
 
@@ -96,6 +98,18 @@ export default function SettingsScreen({
               summary={`${Math.max(0, equipment.length - 1)} équipement${equipment.length - 1 > 1 ? 's' : ''} en plus du poids du corps`}
             >
               <EquipmentSection equipment={equipment} onChange={onEquipmentChange} library={library} />
+            </CollapsibleSection>
+
+            <CollapsibleSection
+              title="Rappels"
+              summary={reminderPreferences?.enabled === false ? 'Désactivés' : `Actifs · ${reminderPreferences?.preferredTime || '08:00'}`}
+            >
+              <ReminderSettings
+                preferences={reminderPreferences}
+                onChange={onReminderPreferencesChange}
+                saving={reminderSaving}
+                error={reminderError}
+              />
             </CollapsibleSection>
 
             <CollapsibleSection title="Données personnelles" summary={checkinCount ? `${checkinCount} points quotidiens enregistrés` : 'Aucun point quotidien'}>
@@ -215,6 +229,8 @@ export default function SettingsScreen({
     </div>
   );
 }
+
+export { ReminderSettings, updateReminderPreferences };
 
 function CollapsibleSection({ title: sectionTitle, summary, children }) {
   return (

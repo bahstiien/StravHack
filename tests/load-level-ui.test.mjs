@@ -36,16 +36,16 @@ test('les réglages affichent un slider accessible gradué de 1 à 8', () => {
   assert.match(html, /BLOC MONTAGNE/);
 });
 
-test('les réglages secondaires sont regroupés dans quatre sections repliées', () => {
+test('les réglages secondaires sont regroupés dans cinq sections repliées', () => {
   const html = renderToStaticMarkup(createElement(SettingsScreen, {
     goals: [{ id: 'g', name: 'Ultra', date: '2026-11-28', priority: 'A', distanceKm: 80, elevationGainM: 5000 }],
     onGoalsChange() {}, equipment: ['poids-du-corps', 'halteres'], onEquipmentChange() {},
     library: { equipment: [], exercises: [] }, longRunPace: 330,
     weeklyAvailability: {}, datedConstraints: [], loadLevel: 4, onLoadLevelChange() {}, checkinCount: 3,
   }));
-  assert.equal((html.match(/<details/g) || []).length, 4);
+  assert.equal((html.match(/<details/g) || []).length, 5);
   assert.equal((html.match(/<details open/g) || []).length, 0);
-  for (const label of ['Objectifs', 'Disponibilités', 'Matériel PPG', 'Données personnelles']) assert.match(html, new RegExp(label));
+  for (const label of ['Objectifs', 'Disponibilités', 'Matériel PPG', 'Rappels', 'Données personnelles']) assert.match(html, new RegExp(label));
   assert.match(html, /1 course configurée/);
   assert.match(html, /3 points quotidiens enregistrés/);
 });
