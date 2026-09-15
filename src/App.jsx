@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState, useCallback } from 'react';
-import { IOSDevice } from './components/ios-frame.jsx';
 import WeekScreen from './screens/WeekScreen.jsx';
 import AnalysisScreen from './screens/AnalysisScreen.jsx';
 import PpgScreen, { ExerciseSheet } from './screens/PpgScreen.jsx';
@@ -389,14 +388,14 @@ export default function App({ repository }) {
   }, [repository]);
 
   return (
-    <main style={{
-      minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      padding: 24, background: 'var(--color-neutral-200)', boxSizing: 'border-box',
-    }}>
-      <div>
-        <IOSDevice>
+    <main className="app-shell">
+      <div className="app-container">
+        <div className="app-sync-status">
+          <SyncBar meta={snapshot.meta} syncing={syncing} onSync={() => refresh(undefined, undefined, true)} />
+        </div>
+        <div className="app-viewport">
           <div style={{
-            height: '100%', display: 'flex', flexDirection: 'column',
+            height: '100%', display: 'flex', flexDirection: 'column', minHeight: 0,
             overflow: 'hidden', background: 'var(--color-bg)', color: INK,
             fontFamily: 'Archivo, system-ui', position: 'relative',
           }}>
@@ -539,9 +538,9 @@ export default function App({ repository }) {
               />
             )}
 
-            <nav style={{
+            <nav className="app-tab-bar" style={{
               flex: 'none', borderTop: RULE, background: 'var(--color-bg)',
-              display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', paddingBottom: 26,
+              display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
             }}>
               {TABS.map((t, i) => (
                 <button
@@ -565,9 +564,8 @@ export default function App({ repository }) {
               ))}
             </nav>
           </div>
-        </IOSDevice>
+        </div>
 
-        <SyncBar meta={snapshot.meta} syncing={syncing} onSync={() => refresh(undefined, undefined, true)} />
       </div>
     </main>
   );

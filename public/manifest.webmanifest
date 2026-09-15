@@ -1,0 +1,20 @@
+{
+  "name": "DÉNIVELÉ — Entraînement trail",
+  "short_name": "DÉNIVELÉ",
+  "description": "Planification trail et préparation physique.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#f3f2f2",
+  "background_color": "#f3f2f2",
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
