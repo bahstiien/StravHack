@@ -297,9 +297,8 @@ l'allure de sa sortie longue de 2 h.
 
 Les nouvelles séances peuvent être proposées dans
 [`CLUB_SESSIONS.md`](CLUB_SESSIONS.md), avec un format lisible date + contenu.
-Après validation, elles sont reportées dans le catalogue JSON ci-dessous.
-
-`data/club-sessions.json`, recopié dans `public/` pour que l'app le lise. Une
+Après validation, `npm run build:club` génère automatiquement le catalogue JSON
+depuis `CLUB_SESSIONS.md`. `npm run build` effectue aussi cette génération. Une
 séance par semaine, le mardi. Le club annonce son contenu, la Coros ne le
 connaît pas à l'avance — d'où la saisie manuelle.
 

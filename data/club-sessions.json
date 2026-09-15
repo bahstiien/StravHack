@@ -1,35 +1,77 @@
 {
-  "_note": "Contenu des séances du club, une par semaine, le mardi. Renseigné à la main : le club annonce ses séances, la Coros ne les connaît pas à l'avance. Une date absente d'ici reste estimée sur la médiane des mardis passés.",
-  "_format": "work/rec en secondes. 'blocks' pour une pyramide ou une liste libre, 'sets' pour des séries répétées. warmupMin / cooldownMin par défaut 20 / 10.",
-
+  "_note": "Généré automatiquement depuis CLUB_SESSIONS.md. Ne pas modifier ce JSON à la main.",
+  "_format": "sets contient n répétitions avec work/rec en secondes.",
   "day": 2,
-
   "sessions": [
     {
       "date": "2026-09-15",
-      "name": "Pyramide 2-3-4-5-4-3-2′",
+      "name": "2′/3′/4′/5′/4′/3′/2′, récupération 1′",
       "warmupMin": 20,
       "cooldownMin": 10,
-      "blocks": [
-        { "work": 120, "rec": 60 },
-        { "work": 180, "rec": 60 },
-        { "work": 240, "rec": 60 },
-        { "work": 300, "rec": 60 },
-        { "work": 240, "rec": 60 },
-        { "work": 180, "rec": 60 },
-        { "work": 120, "rec": 60 }
+      "sets": [
+        {
+          "n": 1,
+          "work": 120,
+          "rec": 60
+        },
+        {
+          "n": 1,
+          "work": 180,
+          "rec": 60
+        },
+        {
+          "n": 1,
+          "work": 240,
+          "rec": 60
+        },
+        {
+          "n": 1,
+          "work": 300,
+          "rec": 60
+        },
+        {
+          "n": 1,
+          "work": 240,
+          "rec": 60
+        },
+        {
+          "n": 1,
+          "work": 180,
+          "rec": 60
+        },
+        {
+          "n": 1,
+          "work": 120,
+          "rec": 60
+        }
       ]
     },
     {
       "date": "2026-09-22",
-      "name": "4 séries courtes 30″ → 1′30",
+      "name": "5 × 30″/30″, 5 × 45″/45″, 5 × 1′/1′, 5 × 1′30″/1′",
       "warmupMin": 20,
       "cooldownMin": 10,
       "sets": [
-        { "n": 5, "work": 30, "rec": 30 },
-        { "n": 5, "work": 45, "rec": 45 },
-        { "n": 5, "work": 60, "rec": 60 },
-        { "n": 5, "work": 90, "rec": 60 }
+        {
+          "n": 5,
+          "work": 30,
+          "rec": 30
+        },
+        {
+          "n": 5,
+          "work": 45,
+          "rec": 45
+        },
+        {
+          "n": 5,
+          "work": 60,
+          "rec": 60
+        },
+        {
+          "n": 5,
+          "work": 90,
+          "rec": 60
+        }
       ]
     }
   ]

@@ -57,6 +57,12 @@ Règles de contribution :
 
 ## Publication dans l’application
 
-Après validation d’une contribution, reporter la séance dans
-`data/club-sessions.json`. Ce JSON reste la source lue par le moteur de
-planification ; ce Markdown est l’interface de contribution humaine.
+Ce Markdown est la source unique. Après une modification, lancer :
+
+```shell
+npm run build:club
+```
+
+Le catalogue utilisé par l’application est généré automatiquement. La commande
+`npm run build` réalise aussi cette étape : aucune recopie manuelle n’est
+nécessaire.
