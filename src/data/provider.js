@@ -52,23 +52,31 @@ function merge(base, incoming) {
   };
 }
 
+export function emptySnapshot(reason = 'Aucune donnée Coros disponible pour ce compte.') {
+  return {
+    athlete: {}, sessions: [], activities: [], exercises: [],
+    load: [], restingHr: [], laps: {}, fitness: {}, recovery: {},
+    meta: { source: 'none', fetchedAt: new Date().toISOString(), reason },
+  };
+}
+
+export function initialSnapshot({ allowFixtures = Boolean(import.meta.env?.DEV) } = {}) {
+  return allowFixtures ? fixtureSnapshot() : emptySnapshot('Connexion aux données en cours…');
+}
+
 /** @returns {Promise<import('./model.js').Snapshot>} */
-export async function loadSnapshot() {
-  const base = fixtureSnapshot();
+export async function loadSnapshot({ allowFixtures = Boolean(import.meta.env?.DEV) } = {}) {
+  const base = allowFixtures ? fixtureSnapshot() : emptySnapshot();
 
   try {
     const data = await getJSON('/api/snapshot');
 
     // The bridge is up but has nothing to serve — a normal state, not an error.
     if (data?.meta?.source === 'none' || !data?.activities?.length) {
-      return {
+      return allowFixtures ? {
         ...base,
-        meta: {
-          source: 'fixtures',
-          fetchedAt: new Date().toISOString(),
-          reason: data?.meta?.reason,
-        },
-      };
+        meta: { source: 'fixtures', fetchedAt: new Date().toISOString(), reason: data?.meta?.reason },
+      } : emptySnapshot(data?.meta?.reason || 'Aucune donnée Coros disponible pour ce compte.');
     }
 
     return merge(base, data);
@@ -78,14 +86,9 @@ export async function loadSnapshot() {
       const file = await getJSON('/coros-snapshot.json');
       return merge(base, { ...file, meta: { ...file.meta, source: 'coros-snapshot' } });
     } catch {
-      return {
-        ...base,
-        meta: {
-          source: 'fixtures',
-          fetchedAt: new Date().toISOString(),
-          reason: 'Aucun pont Coros et aucun instantané — données de démo.',
-        },
-      };
+      return allowFixtures
+        ? { ...base, meta: { source: 'fixtures', fetchedAt: new Date().toISOString(), reason: 'Aucun pont Coros et aucun instantané — données de démo.' } }
+        : emptySnapshot('Aucune donnée Coros disponible. Lance une synchronisation depuis un environnement connecté.');
     }
   }
 }

@@ -4,8 +4,7 @@ import PlanningScreen from './screens/PlanningScreen.jsx';
 import AnalysisScreen from './screens/AnalysisScreen.jsx';
 import PpgScreen, { ExerciseSheet } from './screens/PpgScreen.jsx';
 import SessionScreen from './screens/SessionScreen.jsx';
-import { loadSnapshot } from './data/provider.js';
-import { fixtureSnapshot } from './data/fixtures.js';
+import { initialSnapshot, loadSnapshot } from './data/provider.js';
 import { INK, RULE, HAIR, MUTED, button } from './lib/ui.js';
 import { isoDate } from './data/model.js';
 import { buildPlan } from './data/plan.js';
@@ -46,7 +45,7 @@ const TABS = [
 ];
 
 export default function App({ repository }) {
-  const [snapshot, setSnapshot] = useState(() => fixtureSnapshot());
+  const [snapshot, setSnapshot] = useState(() => initialSnapshot());
   const [syncing, setSyncing] = useState(true);
   const [tab, setTab] = useState('week');
   const [weekOffset, setWeekOffset] = useState(0);
