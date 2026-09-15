@@ -1,0 +1,3 @@
+-- Remote baseline present in the Supabase migration history before this app
+-- externalized its storage. Kept empty locally so future `supabase db push`
+-- runs compare against the same migration ledger without replaying schema.

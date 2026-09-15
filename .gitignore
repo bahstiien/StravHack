@@ -1,0 +1,14 @@
+node_modules/
+dist/
+# public/coros-snapshot.json — versionné : ce sont de vraies données déjà récupérées
+.bridge.log
+.settings-dev-*.log
+.tmp-*
+.cache/
+.env.local
+supabase/.temp/
+
+# Données sportives personnelles récupérées depuis Strava/COROS
+data/strava-raw.json
+data/coros-raw.json
+public/coros-snapshot.json

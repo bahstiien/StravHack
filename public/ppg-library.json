@@ -1,0 +1,1209 @@
+{
+  "_note": "Sélection trail extraite de hasaneyldrm/exercises-dataset (MIT). Les consignes françaises viennent du dataset ; le nom français, le rôle, la raison et la dose sont propres à cette app. Les visuels (© Gym visual) sont chargés depuis le dépôt source, pas recopiés ici — pour un usage public, prendre une licence chez Gym visual.",
+  "mediaAttribution": "© Gym visual — https://gymvisual.com/",
+  "source": "https://github.com/hasaneyldrm/exercises-dataset",
+  "builtAt": "2026-09-14T13:33:12.121Z",
+  "equipment": [
+    {
+      "id": "poids-du-corps",
+      "label": "Poids du corps",
+      "always": true
+    },
+    {
+      "id": "banc-step",
+      "label": "Banc ou marche"
+    },
+    {
+      "id": "halteres",
+      "label": "Haltères"
+    },
+    {
+      "id": "elastique",
+      "label": "Élastique"
+    },
+    {
+      "id": "kettlebell",
+      "label": "Kettlebell"
+    },
+    {
+      "id": "swiss-ball",
+      "label": "Swiss ball"
+    },
+    {
+      "id": "rouleau",
+      "label": "Rouleau de massage"
+    },
+    {
+      "id": "gilet-leste",
+      "label": "Gilet lesté"
+    },
+    {
+      "id": "barre",
+      "label": "Barre"
+    },
+    {
+      "id": "salle",
+      "label": "Machines de salle"
+    }
+  ],
+  "exercises": [
+    {
+      "id": "0410",
+      "name": "Fente bulgare lestée",
+      "sourceName": "dumbbell single leg split squat",
+      "cat": "FORCE",
+      "zone": "glutes · hamstrings · calves",
+      "target": "quads",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres",
+        "banc-step"
+      ],
+      "sets": "4 × 8 / jambe",
+      "tempo": "3–1–1",
+      "why": "Le trail se court sur une jambe à la fois. La fente bulgare charge le quadriceps en appui unipodal, exactement ce que la descente réclame après deux heures de course.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main.",
+        "Fais un pas en avant avec un pied et positionne tes pieds de sorte que le pied avant soit à plat sur le sol et le pied arrière surélevé sur un banc ou une marche.",
+        "Abaisse ton corps en fléchissant ton genou et ta hanche avant, en gardant ton genou arrière légèrement fléchi et ton talon arrière décollé du sol.",
+        "Continue à descendre jusqu'à ce que ta cuisse avant soit parallèle au sol, puis pousse sur ton talon avant pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité, puis change de jambe et recommence."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0410-qx4fgX7.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0410-qx4fgX7.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1001",
+      "name": "Fente bulgare à l’élastique",
+      "sourceName": "band single leg split squat",
+      "cat": "FORCE",
+      "zone": "glutes · hamstrings",
+      "target": "quads",
+      "bodyPart": "upper legs",
+      "equipment": "elastique",
+      "needs": [
+        "elastique",
+        "banc-step"
+      ],
+      "sets": "3 × 10 / jambe",
+      "tempo": "3–0–1",
+      "why": "Même schéma que la version lestée, avec une résistance qui monte en fin d’amplitude — utile quand tu n’as pas de charge sous la main.",
+      "cues": [
+        "Tiens-toi les pieds écartés à la largeur des hanches et place un élastique autour de tes chevilles.",
+        "Fais un grand pas en avant avec le pied droit et un plus petit pas en arrière avec le pied gauche.",
+        "Fléchis les genoux et abaisse ton corps jusqu'à ce que ta cuisse droite soit parallèle au sol, en gardant ton genou gauche légèrement au-dessus du sol.",
+        "Pousse à travers ton talon droit pour revenir à la position de départ.",
+        "Répète de l'autre côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1001-y8bYM8w.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1001-y8bYM8w.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3470",
+      "name": "Fente avant",
+      "sourceName": "forward lunge (male)",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 12 / jambe",
+      "tempo": "2–0–1",
+      "why": "Le geste de base de l’appui unipodal. À maîtriser à vide avant d’ajouter la moindre charge.",
+      "cues": [
+        "Tiens-toi les pieds écartés à la largeur des hanches et les mains sur les hanches.",
+        "Fais un grand pas en avant avec le pied droit, en abaissant ton corps en position de fente.",
+        "Fléchis ton genou droit à environ 90 degrés en gardant ton genou aligné avec ta cheville.",
+        "Pousse sur ton pied droit et reviens à la position de départ.",
+        "Répète avec ta jambe gauche, en alternant les côtés pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3470-kMzUs9Y.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3470-kMzUs9Y.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1460",
+      "name": "Fentes marchées",
+      "sourceName": "walking lunge",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 20 pas",
+      "tempo": "continu",
+      "why": "Enchaîner les appuis sans temps mort reproduit la fatigue d’une longue descente mieux qu’une série statique.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules.",
+        "Fais un pas en avant avec la jambe droite, en abaissant ton corps en position de fente.",
+        "Garde le torse droit et le genou avant aligné avec la cheville.",
+        "Pousse sur ton pied droit et amène ton pied gauche vers l'avant, en te plaçant en position de fente avec ta jambe gauche.",
+        "Continue à alterner les jambes et à avancer en maintenant un rythme contrôlé et régulier.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1460-IZVHb27.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1460-IZVHb27.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1760",
+      "name": "Squat gobelet",
+      "sourceName": "dumbbell goblet squat",
+      "cat": "FORCE",
+      "zone": "glutes · hamstrings · calves",
+      "target": "quads",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "4 × 10",
+      "tempo": "3–0–1",
+      "why": "Le squat le plus sûr à charger seul : la charge devant force le buste à rester droit.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère verticalement contre ta poitrine à deux mains.",
+        "En gardant la poitrine relevée et la sangle abdominale gainée, abaisse ton corps en position de squat en poussant tes hanches vers l'arrière et en fléchissant tes genoux.",
+        "Continue à descendre jusqu'à ce que tes cuisses soient parallèles au sol, ou aussi bas que tu peux confortablement aller.",
+        "Marque une pause en bas, puis pousse sur tes talons pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1760-yn8yg1r.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1760-yn8yg1r.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0411",
+      "name": "Squat unipodal lesté",
+      "sourceName": "dumbbell single leg squat",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "3 × 6 / jambe",
+      "tempo": "3–1–1",
+      "why": "Force et équilibre dans le même geste. Si tu vacilles, c’est la stabilité de hanche qui manque — et c’est elle qui lâche en fin de course.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main.",
+        "Étends une jambe vers l'avant et garde-la décollée du sol tout au long de l'exercice.",
+        "Fléchis ta jambe d'appui et abaisse ton corps comme si tu t'asseyais sur une chaise.",
+        "Garde la poitrine relevée et le dos droit.",
+        "Marque une pause en bas, puis pousse sur ton talon pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité, puis change de jambe."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0411-H6ybluc.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0411-H6ybluc.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0431",
+      "name": "Montées de marche lestées",
+      "sourceName": "dumbbell step-up",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres",
+        "banc-step"
+      ],
+      "sets": "4 × 10 / jambe",
+      "tempo": "2–0–2",
+      "why": "La montée sèche, sans élan : c’est le geste de la côte raide, celui où les bâtons ne sauvent rien.",
+      "cues": [
+        "Tiens-toi devant un banc ou une marche avec un haltère dans chaque main, les paumes tournées vers ton corps.",
+        "Place ton pied droit sur le banc ou le step, en veillant à ce que tout ton pied soit en contact avec la surface.",
+        "Pousse à travers ton talon droit et soulève ton corps sur le banc ou la marche en tendant ta jambe droite.",
+        "Amène ton pied gauche sur le banc ou la marche en te redressant complètement.",
+        "Redescends avec le pied gauche, puis avec le pied droit, pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité, puis change de jambe."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0431-aXtJhlg.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0431-aXtJhlg.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1008",
+      "name": "Montées de marche à l’élastique",
+      "sourceName": "band step-up",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "elastique",
+      "needs": [
+        "elastique",
+        "banc-step"
+      ],
+      "sets": "3 × 12 / jambe",
+      "tempo": "2–0–2",
+      "why": "Version sans charge libre, avec une résistance qui croît au moment où le genou passe devant.",
+      "cues": [
+        "Place un élastique autour de tes cuisses, juste au-dessus de tes genoux.",
+        "Tiens-toi face à une marche ou une plateforme, les pieds écartés à la largeur des hanches.",
+        "Monte sur la plateforme avec le pied droit, en poussant sur ton talon.",
+        "Étends ta jambe gauche derrière toi, en la gardant tendue.",
+        "Repose ton pied gauche au sol.",
+        "Répète avec ton pied gauche en montant sur la plateforme.",
+        "Continue à alterner les jambes pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1008-d5bTEPV.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1008-d5bTEPV.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0336",
+      "name": "Fentes lestées",
+      "sourceName": "dumbbell lunge",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "4 × 10 / jambe",
+      "tempo": "2–1–1",
+      "why": "Charge la fente sans complexifier l’équilibre — la progression logique après les fentes à vide.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main.",
+        "Fais un pas en avant avec le pied droit, en abaissant ton corps en position de fente.",
+        "Garde le dos droit et la poitrine relevée pendant que tu abaisses ton corps.",
+        "Pousse à travers ton talon droit pour revenir à la position de départ.",
+        "Répète avec ta jambe gauche.",
+        "Alterne les jambes pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0336-RRWFUcw.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0336-RRWFUcw.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1004",
+      "name": "Squat à l’élastique",
+      "sourceName": "band squat",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "elastique",
+      "needs": [
+        "elastique"
+      ],
+      "sets": "3 × 15",
+      "tempo": "2–0–1",
+      "why": "Résistance maximale en haut du mouvement, là où le fessier travaille : utile pour la relance en sortie de montée.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, l'élastique placé juste au-dessus de tes genoux.",
+        "En gardant la poitrine relevée et la sangle abdominale gainée, pousse tes hanches vers l'arrière et fléchis tes genoux pour descendre en position de squat.",
+        "Assure-toi que tes genoux sont alignés au-dessus de tes orteils et que ton poids repose sur tes talons.",
+        "Marque une pause en bas, puis pousse sur tes talons pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1004-TUZLh71.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1004-TUZLh71.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3769",
+      "name": "Squat croisé",
+      "sourceName": "curtsey squat",
+      "cat": "FORCE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 12 / jambe",
+      "tempo": "2–0–1",
+      "why": "Cible le moyen fessier, le muscle qui empêche le bassin de basculer sur terrain dévers.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules.",
+        "Fais un pas en diagonale derrière et en travers de ton corps avec le pied droit, en le croisant derrière ta jambe gauche.",
+        "Fléchis les deux genoux comme si tu faisais une révérence, en abaissant ton corps vers le sol.",
+        "Garde le torse droit et le poids sur le pied avant.",
+        "Pousse à travers ton pied avant pour revenir à la position de départ.",
+        "Répète de l'autre côté en faisant un pas en diagonale derrière et en travers de ton corps avec ton pied gauche."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3769-gUjqdei.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3769-gUjqdei.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0409",
+      "name": "Extensions mollets unipodales lestées",
+      "sourceName": "dumbbell single leg calf raise",
+      "cat": "FORCE",
+      "zone": "ankles",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "4 × 12 / jambe",
+      "tempo": "2–1–2",
+      "why": "Le mollet encaisse chaque foulée seul. En bipodal tu triches toujours avec la jambe forte.",
+      "cues": [
+        "Tiens-toi sur le bord d'une marche ou d'une plateforme, les talons dans le vide et les orteils sur la marche.",
+        "Tiens un haltère dans une main et pose ton autre main sur un mur ou une rambarde pour te soutenir.",
+        "Lève ton talon aussi haut que possible en soulevant ton corps sur la pointe des pieds.",
+        "Marque une pause en haut, puis abaisse lentement ton talon sous la marche.",
+        "Répète le nombre de répétitions souhaité, puis passe à l'autre jambe."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0409-1kB3Wmk.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0409-1kB3Wmk.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0400",
+      "name": "Mollets assis une jambe",
+      "sourceName": "dumbbell seated one leg calf raise",
+      "cat": "FORCE",
+      "zone": "hamstrings · glutes",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "4 × 15 / jambe",
+      "tempo": "2–1–2",
+      "why": "Genou fléchi, c’est le soléaire qui travaille — le muscle le plus sollicité en montée raide, et le plus souvent blessé chez le traileur.",
+      "cues": [
+        "Assieds-toi sur un banc ou une chaise, les pieds à plat sur le sol et un haltère posé sur ta cuisse droite.",
+        "Étends ta jambe gauche droit devant toi, en gardant ton pied fléchi.",
+        "Place l'avant de ton pied droit sur une surface surélevée, comme une marche ou un disque de poids.",
+        "En utilisant les muscles de tes mollets, lève ton talon droit aussi haut que possible.",
+        "Marque une pause en haut, puis abaisse lentement ton talon pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité, puis change de jambe."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0400-Ia7tumC.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0400-Ia7tumC.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1373",
+      "name": "Extensions mollets debout",
+      "sourceName": "bodyweight standing calf raise",
+      "cat": "FORCE",
+      "zone": "ankles · feet",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 20",
+      "tempo": "2–1–2",
+      "why": "Le point de départ, partout, sans matériel. Amplitude complète : talon sous le niveau de la marche.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, les orteils pointés vers l'avant.",
+        "Place tes mains sur un mur ou une surface stable pour l'équilibre.",
+        "Lève lentement les talons du sol, en reportant le poids de ton corps sur la pointe des pieds.",
+        "Marque une pause en haut, puis abaisse lentement tes talons pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1373-bJYHBIN.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1373-bJYHBIN.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0999",
+      "name": "Mollets une jambe à l’élastique",
+      "sourceName": "band single leg calf raise",
+      "cat": "FORCE",
+      "zone": "ankles · feet",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "elastique",
+      "needs": [
+        "elastique"
+      ],
+      "sets": "3 × 15 / jambe",
+      "tempo": "2–1–2",
+      "why": "Charge progressive sans haltère, pratique en déplacement.",
+      "cues": [
+        "Tiens-toi les pieds écartés à la largeur des hanches et place l'élastique autour de la pointe de ton pied gauche.",
+        "Tiens-toi à un objet stable pour l'équilibre si nécessaire.",
+        "Lève lentement le talon gauche du sol, en reportant le poids de ton corps sur la pointe du pied.",
+        "Marque une pause en haut, puis abaisse lentement ton talon gauche pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité, puis passe à la jambe droite."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0999-9JprnPh.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0999-9JprnPh.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0284",
+      "name": "Mollets buste penché",
+      "sourceName": "donkey calf raise",
+      "cat": "FORCE",
+      "zone": "hamstrings · glutes",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 15",
+      "tempo": "2–1–2",
+      "why": "La flexion de hanche étire les gastrocnémiens avant l’effort : amplitude supérieure à la version debout.",
+      "cues": [
+        "Tiens-toi debout, les orteils sur une surface surélevée, comme une marche ou un bloc.",
+        "Place tes mains sur un support stable, comme un mur ou une rampe, pour l'équilibre.",
+        "Lève tes talons aussi haut que possible en reportant le poids de ton corps sur la plante de tes pieds.",
+        "Marque une pause en haut, puis abaisse lentement tes talons pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0284-u5ESqzH.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0284-u5ESqzH.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1757",
+      "name": "Soulevé de terre unipodal",
+      "sourceName": "dumbbell single leg deadlift",
+      "cat": "EXCENTRIQUE",
+      "zone": "hamstrings · lower back",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "3 × 8 / jambe",
+      "tempo": "4–0–1",
+      "why": "Ischio-jambiers et équilibre en même temps. La descente lente est tout l’intérêt : c’est elle qui prépare la descente de trail.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des hanches, en tenant un haltère dans ta main droite.",
+        "Reporte ton poids sur ta jambe gauche et soulève légèrement ton pied droit du sol.",
+        "En gardant le dos droit, bascule vers l'avant au niveau des hanches et abaisse l'haltère vers le sol.",
+        "En même temps, étends ta jambe droite tendue derrière toi en gardant une légère flexion dans ton genou gauche.",
+        "Abaisse l'haltère jusqu'à ce que ton torse et ta jambe droite soient parallèles au sol.",
+        "Marque une pause, puis contracte tes fessiers et tes ischio-jambiers pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité, puis change de côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1757-gKozT8X.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1757-gKozT8X.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1459",
+      "name": "Soulevé de terre roumain",
+      "sourceName": "dumbbell romanian deadlift",
+      "cat": "EXCENTRIQUE",
+      "zone": "hamstrings · lower back",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "4 × 8",
+      "tempo": "4–0–1",
+      "why": "La chaîne postérieure en excentrique pur. Descendre en quatre secondes, montre en main.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main en prise pronation.",
+        "En gardant le dos droit et ta sangle abdominale gainée, bascule au niveau des hanches et abaisse les haltères vers le sol, en laissant tes genoux se fléchir légèrement.",
+        "Abaisse les haltères jusqu'à ce que tu ressentes un étirement dans tes ischio-jambiers, puis pousse sur tes talons et gaine tes fessiers pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1459-rR0LJzx.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1459-rR0LJzx.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "2805",
+      "name": "SDT unipodal avec appui",
+      "sourceName": "dumbbell single leg deadlift with stepbox support",
+      "cat": "EXCENTRIQUE",
+      "zone": "hamstrings · lower back",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres",
+        "banc-step"
+      ],
+      "sets": "3 × 10 / jambe",
+      "tempo": "4–0–1",
+      "why": "L’appui arrière enlève le problème d’équilibre et laisse toute l’attention sur la descente.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des hanches, en tenant un haltère dans ta main droite.",
+        "Place ton pied gauche sur un stepbox ou une surface surélevée derrière toi.",
+        "En gardant le dos droit et la sangle abdominale gainée, bascule vers l'avant au niveau des hanches, en abaissant l'haltère vers le sol.",
+        "En abaissant l'haltère, lève simultanément ta jambe gauche derrière toi en maintenant une ligne droite de la tête au talon.",
+        "Abaisse l'haltère jusqu'à ce que tu ressentes un étirement dans ton ischio-jambier droit, puis reviens à la position de départ.",
+        "Répète le nombre de répétitions souhaité, puis change de côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/2805-daBmy1Y.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/2805-daBmy1Y.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1010",
+      "name": "SDT jambes tendues à l’élastique",
+      "sourceName": "band straight leg deadlift",
+      "cat": "EXCENTRIQUE",
+      "zone": "hamstrings · glutes",
+      "target": "spine",
+      "bodyPart": "back",
+      "equipment": "elastique",
+      "needs": [
+        "elastique"
+      ],
+      "sets": "3 × 12",
+      "tempo": "3–0–1",
+      "why": "Version sans charge lourde pour les semaines chargées, où l’on veut le geste sans le coût.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules et place l'élastique autour de tes pieds.",
+        "Tiens l'élastique des deux mains, les paumes tournées vers ton corps, et garde tes bras tendus.",
+        "Gaine ta sangle abdominale et maintiens une légère flexion dans tes genoux.",
+        "Bascule lentement vers l'avant au niveau des hanches, en gardant le dos droit et la poitrine relevée.",
+        "Abaisse l'élastique vers le sol tout en gardant tes jambes tendues.",
+        "Marque une pause en bas, puis contracte tes fessiers et tes ischio-jambiers pour revenir à la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1010-KUaoUV8.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1010-KUaoUV8.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1374",
+      "name": "Réception unipodale depuis une marche",
+      "sourceName": "box jump down with one leg stabilization",
+      "cat": "EXCENTRIQUE",
+      "zone": "quadriceps · hamstrings · glutes",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps",
+        "banc-step"
+      ],
+      "sets": "4 × 6 / jambe",
+      "tempo": "réception contrôlée",
+      "why": "La descente de trail est un enchaînement de réceptions. Ici on les entraîne à froid, une par une, en contrôlant l’amorti.",
+      "cues": [
+        "Tiens-toi devant une boîte ou une plateforme, les pieds écartés à la largeur des épaules.",
+        "Fléchis les genoux et saute sur la box, en atterrissant en douceur avec un pied sur la box et l'autre pied dans le vide au bord.",
+        "Stabilise-toi sur la boîte avec le pied posé dessus, tout en gardant l'autre pied décollé du sol.",
+        "Maintiens cette position pendant quelques secondes, en engageant tes mollets pour garder l'équilibre.",
+        "Descends lentement avec le pied posé sur la boîte, en revenant à la position de départ.",
+        "Répète l'exercice avec l'autre jambe."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1374-iPm26QU.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1374-iPm26QU.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0276",
+      "name": "Dead bug",
+      "sourceName": "dead bug",
+      "cat": "GAINAGE",
+      "zone": "hip flexors · lower back",
+      "target": "abs",
+      "bodyPart": "waist",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 10 / côté",
+      "tempo": "4 s par répétition",
+      "why": "Apprend au tronc à rester fixe pendant que les membres bougent — exactement ce qu’on lui demande en courant.",
+      "cues": [
+        "Allonge-toi sur le dos, les bras tendus vers le plafond.",
+        "Fléchis les genoux et décolle les jambes du sol en créant un angle de 90 degrés au niveau de tes hanches et de tes genoux.",
+        "Gaine ta sangle abdominale et le bas de ton dos pour presser le bas de ton dos contre le sol.",
+        "Abaisse lentement ton bras droit et ta jambe gauche vers le sol, en les gardant tendus et suspendus juste au-dessus du sol.",
+        "Marque une pause, puis reviens à la position de départ.",
+        "Répète le mouvement avec ton bras gauche et ta jambe droite.",
+        "Continue à alterner les côtés pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0276-iny3m5y.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0276-iny3m5y.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3544",
+      "name": "Gainage latéral incliné",
+      "sourceName": "bodyweight incline side plank",
+      "cat": "GAINAGE",
+      "zone": "obliques · shoulders",
+      "target": "abs",
+      "bodyPart": "waist",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 45″ / côté",
+      "tempo": "continu",
+      "why": "Un tronc qui lâche, c’est un bassin qui bascule et une foulée qui coûte 4 % de plus. 45 secondes propres valent mieux que deux minutes affaissées.",
+      "cues": [
+        "Commence allongé sur le côté, les jambes tendues et superposées l'une sur l'autre.",
+        "Place ton avant-bras au sol directement sous ton épaule, avec ton coude plié à un angle de 90 degrés.",
+        "Gaine ta sangle abdominale et lève tes hanches du sol, en créant une ligne droite de ta tête à tes pieds.",
+        "Maintiens cette position pendant la durée souhaitée.",
+        "Redescends tes hanches jusqu'au sol et répète de l'autre côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3544-5VXmnV5.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3544-5VXmnV5.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1774",
+      "name": "Gainage latéral avec abduction",
+      "sourceName": "side bridge hip abduction",
+      "cat": "GAINAGE",
+      "zone": "glutes · obliques",
+      "target": "abductors",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 12 / côté",
+      "tempo": "2–1–2",
+      "why": "Ajoute le moyen fessier au gainage latéral : le duo exact qui tient le bassin sur sentier dévers.",
+      "cues": [
+        "Allonge-toi sur le côté, les jambes tendues et empilées l'une sur l'autre.",
+        "Redresse-toi sur ton avant-bras, en gardant ton coude directement sous ton épaule.",
+        "Gaine ta sangle abdominale et lève tes hanches du sol, en créant une ligne droite de ta tête à tes pieds.",
+        "Tout en gardant ta sangle abdominale gainée, lève ta jambe supérieure le plus haut possible sans faire pivoter tes hanches.",
+        "Marque une pause en haut, puis abaisse ta jambe.",
+        "Répète le nombre de répétitions souhaité, puis change de côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1774-WL4EmxJ.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1774-WL4EmxJ.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0464",
+      "name": "Gainage avec rotation",
+      "sourceName": "front plank with twist",
+      "cat": "GAINAGE",
+      "zone": "obliques · shoulders",
+      "target": "abs",
+      "bodyPart": "waist",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 10 / côté",
+      "tempo": "lent",
+      "why": "La rotation contrôlée entraîne les obliques sans casser l’alignement — le gainage statique seul ne suffit pas.",
+      "cues": [
+        "Commence en position de planche haute, les mains directement sous les épaules et le corps aligné de la tête aux pieds.",
+        "Gaine ta sangle abdominale et tes fessiers pour maintenir une position stable.",
+        "Fais pivoter ton torse vers la droite, en levant ton bras droit et en l'étendant vers le plafond.",
+        "Garde tes hanches et tes jambes stables pendant que tu effectues la rotation.",
+        "Maintiens un moment, puis reviens à la position de départ.",
+        "Répète la torsion du côté gauche.",
+        "Continue à alterner les côtés pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0464-CosupLu.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0464-CosupLu.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3561",
+      "name": "Pont fessier alterné",
+      "sourceName": "glute bridge march",
+      "cat": "GAINAGE",
+      "zone": "hamstrings · quadriceps",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 12 / jambe",
+      "tempo": "2–1–2",
+      "why": "Fessier et stabilité lombaire en appui unipodal, sans charge. À faire avant les séances de côte.",
+      "cues": [
+        "Allonge-toi sur le dos, les genoux fléchis et les pieds à plat au sol.",
+        "Contracte tes fessiers et soulève tes hanches du sol, en formant une ligne droite de tes genoux à tes épaules.",
+        "Tout en gardant tes hanches soulevées, décolle un pied du sol et ramène ton genou vers ta poitrine.",
+        "Repose ton pied au sol et répète le mouvement avec l'autre jambe.",
+        "Continue à alterner les jambes dans un mouvement de marche tout en maintenant la position du pont.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3561-GibBPPg.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3561-GibBPPg.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3013",
+      "name": "Pont fessier au sol",
+      "sourceName": "low glute bridge on floor",
+      "cat": "GAINAGE",
+      "zone": "hamstrings · core",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 15",
+      "tempo": "2–2–2",
+      "why": "Réveille le fessier avant la séance. Le plus simple, et celui qu’on saute toujours.",
+      "cues": [
+        "Allonge-toi sur le dos, les genoux fléchis et les pieds à plat au sol.",
+        "Place tes bras le long de ton corps, les paumes tournées vers le bas.",
+        "Contracte tes fessiers et ta sangle abdominale, puis soulève tes hanches du sol jusqu'à ce que ton corps forme une ligne droite de tes genoux à tes épaules.",
+        "Marque une pause en haut, en contractant tes fessiers.",
+        "Abaisse lentement tes hanches vers la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3013-u0cNiij.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3013-u0cNiij.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0687",
+      "name": "Russian twist",
+      "sourceName": "russian twist",
+      "cat": "GAINAGE",
+      "zone": "obliques",
+      "target": "abs",
+      "bodyPart": "waist",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 20",
+      "tempo": "continu",
+      "why": "Obliques en rotation chargée. À doser : ce n’est pas la priorité d’un traileur, mais ça complète.",
+      "cues": [
+        "Assieds-toi au sol, les genoux fléchis et les pieds à plat sur le sol.",
+        "Penche-toi légèrement en arrière en gardant le dos droit et la sangle abdominale gainée.",
+        "Joins tes mains devant ta poitrine ou tiens un poids si tu le souhaites.",
+        "Décolle tes pieds du sol, en équilibre sur tes ischions.",
+        "Fais pivoter ton torse vers la droite, en amenant tes mains ou le poids vers le côté droit de ton corps.",
+        "Marque une pause, puis fais pivoter ton torse vers la gauche, en amenant tes mains ou le poids vers le côté gauche de ton corps.",
+        "Continue à alterner les côtés pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0687-XVDdcoj.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0687-XVDdcoj.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3663",
+      "name": "Gainage inversé avec levée de jambe",
+      "sourceName": "reverse plank with leg lift",
+      "cat": "GAINAGE",
+      "zone": "glutes · hamstrings · shoulders",
+      "target": "abs",
+      "bodyPart": "waist",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 8 / jambe",
+      "tempo": "2–1–2",
+      "why": "La face postérieure du tronc, celle que le gainage ventral oublie.",
+      "cues": [
+        "Assieds-toi au sol, les jambes tendues devant toi et les mains posées sur le sol derrière toi, les doigts pointés vers tes pieds.",
+        "Pousse sur tes mains et soulève tes hanches du sol, en venant dans une position de planche inversée.",
+        "Gaine ta sangle abdominale et lève une jambe du sol, en l'étendant droite vers le plafond.",
+        "Maintiens un moment, puis abaisse ta jambe.",
+        "Répète avec l'autre jambe.",
+        "Continue à alterner les jambes pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3663-tFToB7l.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3663-tFToB7l.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0514",
+      "name": "Squat sauté",
+      "sourceName": "jump squat",
+      "cat": "PLIOMÉTRIE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "4 × 8",
+      "tempo": "contact court",
+      "why": "Le rendement en côte vient de la raideur tendineuse. Contacts brefs, peu de volume, jamais en fin de semaine chargée.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules.",
+        "Abaisse ton corps en position de squat en fléchissant tes genoux et en poussant tes hanches vers l'arrière.",
+        "Saute du sol de manière explosive, en étendant tes hanches, tes genoux et tes chevilles.",
+        "En plein saut, ramène rapidement tes bras vers l'avant pour l'équilibre.",
+        "Atterris en douceur sur la pointe des pieds et enchaîne immédiatement avec la répétition suivante.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0514-LIlE5Tn.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0514-LIlE5Tn.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3582",
+      "name": "Fentes sautées",
+      "sourceName": "lunge with jump",
+      "cat": "PLIOMÉTRIE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "4 × 6 / jambe",
+      "tempo": "contact court",
+      "why": "Pliométrie en appui unipodal : le plus proche de la foulée de course.",
+      "cues": [
+        "Commence debout, les pieds écartés à la largeur des épaules.",
+        "Fais un pas en avant avec le pied droit, en abaissant ton corps en position de fente.",
+        "Pousse sur ton pied droit et saute en l'air en changeant la position de tes pieds en plein saut.",
+        "Atterris en douceur avec le pied gauche en avant et abaisse immédiatement ton corps en position de fente.",
+        "Continue à alterner entre les fentes et les sauts pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3582-PM1PZjg.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3582-PM1PZjg.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "3543",
+      "name": "Drop jump",
+      "sourceName": "bodyweight drop jump squat",
+      "cat": "PLIOMÉTRIE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps",
+        "banc-step"
+      ],
+      "sets": "5 × 5",
+      "tempo": "contact < 200 ms",
+      "why": "Le meilleur exercice de raideur tendineuse — et le plus traumatisant. Jamais plus d’une fois par semaine.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules.",
+        "Abaisse ton corps en position de squat en fléchissant tes genoux et en poussant tes hanches vers l'arrière.",
+        "Saute vers le haut de manière explosive, en étendant tes hanches, tes genoux et tes chevilles.",
+        "En plein saut, ramène rapidement tes pieds l'un contre l'autre.",
+        "Atterris en douceur sur la pointe des pieds et redescends immédiatement en position de squat.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/3543-wfotm7S.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/3543-wfotm7S.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1472",
+      "name": "Saut horizontal",
+      "sourceName": "forward jump",
+      "cat": "PLIOMÉTRIE",
+      "zone": "calves · hamstrings · glutes",
+      "target": "quads",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "4 × 5",
+      "tempo": "explosif",
+      "why": "Puissance horizontale, celle qui sert à relancer sur le plat après une montée.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules.",
+        "Fléchis les genoux et abaisse ton corps en position accroupie.",
+        "Balance tes bras vers l'arrière pour prendre de l'élan.",
+        "Saute vers l'avant de manière explosive, en étendant tes hanches, tes genoux et tes chevilles.",
+        "Atterris en douceur sur la pointe des pieds et enchaîne immédiatement avec le saut suivant.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1472-uZKq7lo.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1472-uZKq7lo.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0371",
+      "name": "Squat pliométrique lesté",
+      "sourceName": "dumbbell plyo squat",
+      "cat": "PLIOMÉTRIE",
+      "zone": "quadriceps · hamstrings · calves",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "halteres",
+      "needs": [
+        "halteres"
+      ],
+      "sets": "4 × 6",
+      "tempo": "explosif",
+      "why": "Pliométrie chargée, à réserver aux semaines fraîches — le coût articulaire monte vite.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules, en tenant un haltère dans chaque main le long du corps.",
+        "Abaisse ton corps en position de squat en fléchissant tes genoux et en poussant tes hanches vers l'arrière.",
+        "Une fois au bas du squat, explose vers le haut en sautant du sol.",
+        "En l'air, change rapidement la position de tes pieds pour atterrir avec le pied opposé devant.",
+        "Abaisse immédiatement ton corps en position de squat et répète le saut, en changeant de nouveau de pieds.",
+        "Continue à alterner la position de tes pieds à chaque saut pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0371-S4pwGlc.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0371-S4pwGlc.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1407",
+      "name": "Mobilité cheville au mur",
+      "sourceName": "calf push stretch with hands against wall",
+      "cat": "MOBILITÉ",
+      "zone": "hamstrings",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "2 × 12 / côté",
+      "tempo": "lent",
+      "why": "Sans 35° de dorsiflexion, tu compenses au genou dans les montées techniques. Deux minutes par jour suffisent.",
+      "cues": [
+        "Tiens-toi face à un mur, les pieds écartés à la largeur des hanches.",
+        "Place tes mains contre le mur à hauteur des épaules.",
+        "Recule un pied, en gardant le talon au sol et la jambe tendue.",
+        "Fléchis légèrement ton genou avant et penche-toi en avant en sentant un étirement dans ton mollet.",
+        "Maintiens l'étirement pendant 20 à 30 secondes.",
+        "Change de jambe et répète l'étirement."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1407-PzNxakt.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1407-PzNxakt.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1377",
+      "name": "Étirement mollet au mur",
+      "sourceName": "calf stretch with hands against wall",
+      "cat": "MOBILITÉ",
+      "zone": "hamstrings",
+      "target": "calves",
+      "bodyPart": "lower legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 30″ / côté",
+      "tempo": "statique",
+      "why": "Après une séance de côte ou une longue descente, pas avant.",
+      "cues": [
+        "Tiens-toi face à un mur, les pieds écartés à la largeur des hanches.",
+        "Place tes mains contre le mur à hauteur des épaules.",
+        "Recule le pied droit, en gardant le talon au sol et la jambe tendue.",
+        "Fléchis ton genou gauche et penche-toi vers l'avant en gardant ta jambe arrière tendue et ton talon au sol.",
+        "Maintiens l'étirement pendant 20 à 30 secondes.",
+        "Change de jambe et répète l'étirement."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1377-m0tCHqc.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1377-m0tCHqc.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1511",
+      "name": "Étirement ischio-jambiers",
+      "sourceName": "hamstring stretch",
+      "cat": "MOBILITÉ",
+      "zone": "glutes",
+      "target": "hamstrings",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 30″ / côté",
+      "tempo": "statique",
+      "why": "Des ischios courts limitent l’amplitude de foulée et tirent sur le bassin.",
+      "cues": [
+        "Tiens-toi debout, les pieds écartés à la largeur des épaules.",
+        "Avance le pied droit et transfère ton poids sur la jambe droite.",
+        "En gardant le dos droit, penche-toi lentement vers l'avant au niveau des hanches, en tendant les deux mains vers ton pied droit.",
+        "Maintiens l'étirement pendant 20 à 30 secondes, puis reviens à la position de départ.",
+        "Répète de l'autre côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1511-99rWm7w.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1511-99rWm7w.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "0613",
+      "name": "Étirement quadriceps allongé",
+      "sourceName": "lying (side) quads stretch",
+      "cat": "MOBILITÉ",
+      "zone": "hamstrings",
+      "target": "quads",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "3 × 30″ / côté",
+      "tempo": "statique",
+      "why": "Position allongée : pas d’équilibre à gérer, donc un étirement réellement relâché.",
+      "cues": [
+        "Allonge-toi sur le côté, les jambes tendues.",
+        "Fléchis ta jambe supérieure et attrape ta cheville ou ton pied avec ta main.",
+        "Tire doucement ta cheville ou ton pied vers tes fessiers jusqu'à ce que tu sentes un étirement dans tes quadriceps.",
+        "Maintiens l'étirement pendant 20 à 30 secondes.",
+        "Relâche l'étirement et répète de l'autre côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/0613-BWnJR72.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/0613-BWnJR72.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1512",
+      "name": "Étirement quadriceps à quatre pattes",
+      "sourceName": "all fours squad stretch",
+      "cat": "MOBILITÉ",
+      "zone": "hamstrings · glutes",
+      "target": "quads",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "2 × 45″ / côté",
+      "tempo": "statique",
+      "why": "Étire aussi le psoas, raccourci par les heures assises autant que par la course.",
+      "cues": [
+        "Commence à quatre pattes, les mains directement sous les épaules et les genoux directement sous les hanches.",
+        "Étends une jambe droit vers l'arrière, en gardant ton genou fléchi et ton pied en flexion.",
+        "Abaisse lentement tes hanches vers le sol, en ressentant un étirement dans tes quadriceps.",
+        "Maintiens cette position pendant 20 à 30 secondes.",
+        "Change de jambe et répète l'étirement de l'autre côté."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1512-qBcKorM.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1512-qBcKorM.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1419",
+      "name": "Étirement fessier croisé",
+      "sourceName": "iron cross stretch",
+      "cat": "MOBILITÉ",
+      "zone": "hamstrings · quadriceps",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "2 × 45″ / côté",
+      "tempo": "statique",
+      "why": "Fessier et bandelette : les deux coupables habituels d’un genou douloureux en descente.",
+      "cues": [
+        "Allonge-toi sur le dos, les bras tendus sur les côtés.",
+        "Lève tes jambes vers le plafond en les gardant tendues.",
+        "Abaisse lentement tes jambes d'un côté, en cherchant à toucher le sol avec tes pieds.",
+        "Maintiens l'étirement pendant quelques secondes, puis ramène tes jambes à la position de départ.",
+        "Répète l'étirement de l'autre côté.",
+        "Continue à alterner les côtés pour le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1419-pZwUsKB.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1419-pZwUsKB.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "2571",
+      "name": "Étirement grenouille",
+      "sourceName": "rocking frog stretch",
+      "cat": "MOBILITÉ",
+      "zone": "hamstrings · quadriceps",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "poids-du-corps",
+      "needs": [
+        "poids-du-corps"
+      ],
+      "sets": "2 × 45″",
+      "tempo": "lent",
+      "why": "Ouvre les adducteurs, qui verrouillent la hanche sur les pas larges en terrain accidenté.",
+      "cues": [
+        "Commence à genoux au sol, les genoux écartés à la largeur des hanches.",
+        "Place tes mains au sol devant toi pour le soutien.",
+        "Penche-toi lentement vers l'avant, en reportant ton poids sur tes mains et en tendant tes jambes derrière toi.",
+        "Garde le dos droit et engage tes fessiers pendant que tu pousses tes hanches vers l'arrière et vers le plafond.",
+        "Maintiens cette position pendant quelques secondes, en ressentant un étirement dans tes fessiers.",
+        "Reviens lentement à la position de départ en fléchissant les genoux et en abaissant les hanches.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/2571-2Dk4xQV.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/2571-2Dk4xQV.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "1559",
+      "name": "Étirement psoas sur ballon",
+      "sourceName": "exercise ball hip flexor stretch",
+      "cat": "MOBILITÉ",
+      "zone": "quadriceps · hamstrings",
+      "target": "glutes",
+      "bodyPart": "upper legs",
+      "equipment": "swiss-ball",
+      "needs": [
+        "swiss-ball"
+      ],
+      "sets": "2 × 45″ / côté",
+      "tempo": "statique",
+      "why": "Le psoas se raccourcit en montée. Sur ballon, l’étirement est soutenu sans forcer le bas du dos.",
+      "cues": [
+        "Place le ballon de stabilité au sol et agenouille-toi devant lui.",
+        "Place ton pied droit sur le ballon de stabilité, le genou fléchi à un angle de 90 degrés.",
+        "Étends ta jambe gauche derrière toi, en la gardant tendue.",
+        "Penche-toi en avant, en poussant tes hanches vers le ballon de stabilité, jusqu'à ce que tu sentes un étirement dans le fléchisseur de ta hanche droite.",
+        "Maintiens l'étirement pendant 20 à 30 secondes, puis change de côté et répète."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/1559-2LQkNPW.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/1559-2LQkNPW.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    },
+    {
+      "id": "2208",
+      "name": "Rouleau — chaîne dorsale",
+      "sourceName": "roller back stretch",
+      "cat": "MOBILITÉ",
+      "zone": "hamstrings · glutes",
+      "target": "spine",
+      "bodyPart": "back",
+      "equipment": "rouleau",
+      "needs": [
+        "rouleau"
+      ],
+      "sets": "2 × 60″",
+      "tempo": "lent",
+      "why": "Rend au dos la mobilité que le sac à dos lui prend sur les longues sorties.",
+      "cues": [
+        "Commence assis au sol, les jambes tendues devant toi.",
+        "Place le rouleau perpendiculaire à ton corps, juste en dessous de tes fessiers.",
+        "Fais rouler lentement ton corps vers l'arrière, en laissant le rouleau remonter le long de ton dos.",
+        "Continue à rouler jusqu'à ce que le rouleau atteigne le haut de ton dos.",
+        "Marque une pause, puis roule lentement jusqu'à la position de départ.",
+        "Répète le nombre de répétitions souhaité."
+      ],
+      "imageUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/images/2208-isofgzg.jpg",
+      "gifUrl": "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/2208-isofgzg.gif",
+      "attribution": "© Gym visual — https://gymvisual.com/"
+    }
+  ]
+}

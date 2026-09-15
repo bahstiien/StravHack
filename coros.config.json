@@ -1,0 +1,22 @@
+{
+  "_comment": "Connexion au serveur MCP Coros. Ne mets jamais de secret ici : utilise ${VAR} et passe la valeur par l'environnement. Voir README.md § Connecter Coros.",
+
+  "transport": "http",
+  "url": "",
+
+  "headers": {
+    "authorization": "Bearer ${COROS_MCP_TOKEN}"
+  },
+
+  "_stdio_example": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@exemple/coros-mcp"],
+    "env": { "COROS_TOKEN": "${COROS_TOKEN}" }
+  },
+
+  "_toolOverrides_comment": "Laisse vide : le pont découvre les outils tout seul. Si `npm run server` affiche ✗ en face d'une capacité, ou la mappe sur le mauvais outil, épingle le nom exact ici.",
+  "toolOverrides": {},
+
+  "lookbackDays": 42
+}
