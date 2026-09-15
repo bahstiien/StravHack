@@ -13,7 +13,8 @@
     "sync:coros": "node scripts/sync-coros.mjs",
     "sync:strava": "node scripts/strava-snapshot.mjs",
     "build:snapshot": "node scripts/build-snapshot.mjs",
-    "build:ppg": "node scripts/build-ppg-library.mjs"
+    "build:ppg": "node scripts/build-ppg-library.mjs",
+    "push:snapshot": "node scripts/push-snapshot.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

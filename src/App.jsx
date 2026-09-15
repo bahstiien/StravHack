@@ -85,7 +85,11 @@ export default function App({ repository }) {
       let data = forceRemote ? null : await repository.loadLatestSnapshot();
       if (!data) {
         data = await loadSnapshot();
-        await repository.saveSnapshot(data, data?.meta?.source === 'coros-mcp' ? 'coros' : 'legacy');
+        // 'coros-mcp' vient du pont en direct, 'coros-snapshot' du relevé sur
+        // disque : dans les deux cas la donnée sort de la montre, et l'étiqueter
+        // 'legacy' rendrait la table illisible.
+        const corosSourced = data?.meta?.source === 'coros-mcp' || data?.meta?.source === 'coros-snapshot';
+        await repository.saveSnapshot(data, corosSourced ? 'coros' : 'legacy');
       }
 
       // Le calendrier du club est une saisie manuelle : le club annonce ses
