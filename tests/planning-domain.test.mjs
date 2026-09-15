@@ -145,3 +145,27 @@ test('une décision verrouillée reste visible si le recalcul ne repropose plus 
   assert.equal(result.sessions[0].date, '2026-09-20');
   assert.equal(result.sessions[0].status, 'DÉPLACÉE');
 });
+
+test('le jour en cours, encore vide dans le relevé, ne chasse pas la séance proposée', () => {
+  // Ce que la synchro du matin écrit pour aujourd'hui : une ligne de remplissage,
+  // marquée non faite tant que la journée n'est pas finie.
+  const enCours = {
+    id: 's-2026-09-17', date: '2026-09-17', type: 'REPOS', title: 'Repos',
+    meta: 'Rien d’enregistré.', done: false, load: 0, steps: [],
+  };
+  const club = session({ id: 'club-2026-09-17', title: 'Club — pyramide', isClub: true });
+  const result = applyDecisionLayer([club], [], [enCours], {}, []);
+  assert.deepEqual(result.sessions.map((s) => s.id), ['club-2026-09-17']);
+  assert.equal(result.sessions[0].status, 'PROPOSÉE');
+});
+
+test('le même jour une fois terminé redevient une journée de repos réalisée', () => {
+  const terminé = {
+    id: 's-2026-09-17', date: '2026-09-17', type: 'REPOS', title: 'Repos',
+    meta: 'Rien d’enregistré.', done: true, load: 0, steps: [],
+  };
+  const club = session({ id: 'club-2026-09-17', title: 'Club — pyramide', isClub: true });
+  const result = applyDecisionLayer([club], [], [terminé], {}, []);
+  assert.deepEqual(result.sessions.map((s) => s.id), ['s-2026-09-17']);
+  assert.equal(result.sessions[0].status, 'RÉALISÉE');
+});

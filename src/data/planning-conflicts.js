@@ -70,13 +70,20 @@ export function weeklyLoads(sessions) {
 }
 
 export function applyDecisionLayer(autoPlan = [], decisions = [], actualSessions = [], availability = {}, exceptions = [], options = {}) {
-  const actualIds = new Set(actualSessions.map((s) => s.id));
-  const actualDates = new Set(actualSessions.map((s) => String(s.date).slice(0, 10)));
+  // Le relevé contient une ligne REPOS par jour sans activité, y compris celui
+  // en cours — que les deux constructeurs d'instantané marquent `done: false`
+  // tant que la journée n'est pas finie. « Rien d'enregistré à 9 h » n'est pas
+  // une journée de repos : compter cette ligne comme réalisée chassait la
+  // proposition du jour, et la séance du club disparaissait du planning le
+  // mardi matin, au premier sync de la journée.
+  const recorded = actualSessions.filter((s) => s.done !== false || s.activityId);
+  const actualIds = new Set(recorded.map((s) => s.id));
+  const actualDates = new Set(recorded.map((s) => String(s.date).slice(0, 10)));
   // Une activité réelle gagne toujours sur sa proposition correspondante : on
   // ne montre jamais le doublon « réalisée + encore à faire » après une synchro.
   const byId = new Map(autoPlan
     .filter((session) => !actualIds.has(session.id) && !actualDates.has(session.date)
-      && !actualSessions.some((actual) => actual.activityId && actual.activityId === session.activityId))
+      && !recorded.some((actual) => actual.activityId && actual.activityId === session.activityId))
     .map((session) => [session.id, { ...session, status: session.status || 'PROPOSÉE' }]));
   const history = [];
   for (const decision of decisions) {
@@ -96,7 +103,7 @@ export function applyDecisionLayer(autoPlan = [], decisions = [], actualSessions
     if (decision.action === 'reject' || decision.action === 'cancel') byId.delete(decision.sessionId);
     else byId.set(decision.sessionId, applyOne(current, decision));
   }
-  const actual = actualSessions.map((session) => ({ ...session, done: true, planned: false, status: 'RÉALISÉE', locked: true }));
+  const actual = recorded.map((session) => ({ ...session, done: true, planned: false, status: 'RÉALISÉE', locked: true }));
   const sessions = [...actual, ...byId.values()].sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
   return { sessions, conflicts: detectPlanningConflicts(sessions, availability, exceptions, options), history, weeklyLoad: weeklyLoads(sessions) };
 }
