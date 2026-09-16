@@ -13,6 +13,7 @@
 // we catch.
 
 import { fixtureSnapshot } from './fixtures.js';
+import { authenticatedFetch } from './api-client.js';
 
 const TIMEOUT_MS = 8000;
 
@@ -20,7 +21,8 @@ async function getJSON(url) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
   try {
-    const res = await fetch(url, { signal: ctrl.signal, headers: { accept: 'application/json' } });
+    const fetcher = String(url).startsWith('/api/') ? authenticatedFetch : fetch;
+    const res = await fetcher(url, { signal: ctrl.signal, headers: { accept: 'application/json' } });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.json();
   } finally {
@@ -46,10 +48,42 @@ function merge(base, incoming) {
     ...incoming,
     athlete: { ...base.athlete, ...(incoming.athlete || {}) },
     sessions: incoming.sessions?.length ? incoming.sessions : base.sessions,
-    activities: incoming.activities?.length ? incoming.activities : base.activities,
+    activities: recentFirst(incoming.activities?.length ? incoming.activities : base.activities),
     exercises: incoming.exercises?.length ? incoming.exercises : base.exercises,
     meta: { ...base.meta, ...(incoming.meta || {}) },
   };
+}
+
+function recentFirst(activities) {
+  return [...(activities || [])].sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+}
+
+/**
+ * Après une synchronisation explicite, montrer immédiatement la dernière
+ * activité reçue. Lors d'un simple recalcul, conserver la sélection seulement
+ * si elle existe encore dans le snapshot.
+ */
+export function activityIdAfterRefresh(currentId, activities, forceRemote = false) {
+  const firstId = activities?.[0]?.id ?? null;
+  if (forceRemote) return firstId;
+  return activities?.some((activity) => activity.id === currentId) ? currentId : firstId;
+}
+
+/** La persistance distante ne doit jamais empêcher l'affichage d'un relevé déjà obtenu. */
+export async function saveSnapshotWithoutBlockingDisplay(repository, snapshot, source) {
+  try {
+    await repository.saveSnapshot(snapshot, source);
+    return snapshot;
+  } catch (error) {
+    console.error('Snapshot Supabase non enregistré', error);
+    return {
+      ...snapshot,
+      meta: {
+        ...(snapshot.meta || {}),
+        degraded: 'Les données ont été chargées, mais leur sauvegarde dans le compte a échoué.',
+      },
+    };
+  }
 }
 
 export function emptySnapshot(reason = 'Aucune donnée Coros disponible pour ce compte.') {
@@ -105,7 +139,7 @@ export async function loadSnapshot({ allowFixtures = Boolean(import.meta.env?.DE
 /** Push a planned session to the watch. Always resolves; never throws. */
 export async function pushToWatch(session) {
   try {
-    const res = await fetch('/api/push-workout', {
+    const res = await authenticatedFetch('/api/push-workout', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ sessionId: session.id, session }),

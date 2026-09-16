@@ -14,6 +14,7 @@ import { CorosClient } from './coros/client.js';
 import { buildSnapshot } from './snapshot.js';
 import { writeLocalSnapshot, SNAPSHOT_PATH } from './localSnapshot.js';
 import { loadConfig, isConfigured, ROOT } from './config.js';
+import { apiAuthSettings, authorizeApiRequest } from './auth.js';
 
 const CACHE_MS = Number(process.env.SNAPSHOT_TTL_MS || 5 * 60 * 1000);
 const SNAPSHOT_FILE = resolve(ROOT, 'public/coros-snapshot.json');
@@ -21,16 +22,18 @@ const SNAPSHOT_FILE = resolve(ROOT, 'public/coros-snapshot.json');
 export function validWorkoutPayload(value, sessionId) {
   return Boolean(value && typeof value === 'object'
     && typeof value.id === 'string' && value.id === sessionId
-    && typeof value.title === 'string' && value.title.trim()
+    && typeof value.title === 'string' && value.title.trim() && value.title.length <= 120
     && /^\d{4}-\d{2}-\d{2}$/.test(String(value.date || ''))
     && ['TRAIL', 'PPG'].includes(value.type)
-    && Array.isArray(value.steps));
+    && Array.isArray(value.steps) && value.steps.length <= 100
+    && value.steps.every((step) => step && typeof step === 'object' && !Array.isArray(step)));
 }
 
-export function createApi() {
+export function createApi({ serverless = process.env.VERCEL === '1' } = {}) {
   const config = loadConfig();
   const coros = new CorosClient(config);
   const configured = isConfigured(config);
+  const authSettings = apiAuthSettings();
   let cache = null;
 
   async function snapshot({ force = false } = {}) {
@@ -77,18 +80,29 @@ export function createApi() {
     if (!url.pathname.startsWith('/api/')) return false;
 
     try {
+      if (req.method === 'OPTIONS') return json(res, 204, {});
+
+      const auth = await authorizeApiRequest(req);
+      if (!auth.ok) return json(res, auth.status, { error: auth.error });
+
       if (url.pathname === '/api/health') {
         if (!configured) {
           return json(res, 200, {
             configured: false,
+            auth: { required: authSettings.required },
             hint: 'coros.config.json — voir README.md § Connecter Coros.',
           });
         }
         try {
           await coros.connect();
-          return json(res, 200, { configured: true, ...coros.describe() });
+          return json(res, 200, { configured: true, auth: { required: authSettings.required }, ...coros.describe() });
         } catch (err) {
-          return json(res, 200, { configured: true, connected: false, error: err.message });
+          return json(res, 200, {
+            configured: true,
+            auth: { required: authSettings.required },
+            connected: false,
+            error: 'Connexion Coros impossible.',
+          });
         }
       }
 
@@ -121,8 +135,7 @@ export function createApi() {
           try {
             await coros.connect();
             const data = await buildSnapshot(coros, { lookbackDays: config.lookbackDays });
-            mkdirSync(dirname(SNAPSHOT_PATH), { recursive: true });
-            writeFileSync(SNAPSHOT_PATH, JSON.stringify(data, null, 2), 'utf8');
+            const persisted = persistSnapshot(data, serverless);
             cache = { at: Date.now(), data };
 
             const d = coros.describe();
@@ -135,23 +148,27 @@ export function createApi() {
               tools: d.toolCount,
               missing: d.missing,
               degraded: data.meta?.degraded ?? null,
+              persistedSnapshot: persisted.ok,
+              warning: persisted.ok ? null : persisted.message,
+              snapshot: data,
               durationMs: Date.now() - startedAt,
             });
           } catch (err) {
             // Coros configuré mais injoignable : on ne laisse pas l'app sans
             // rien, on reconstruit — en disant que la synchro a échoué.
-            const rebuilt = safeRebuild();
+            console.error('Coros synchronization failed', err);
+            const rebuilt = serverless ? { activityCount: 0, sessionCount: 0 } : safeRebuild();
             return json(res, 200, {
               ok: false,
               mode: 'rebuild',
-              error: `Coros injoignable : ${err.message}`,
+              error: 'Coros est temporairement injoignable.',
               ...rebuilt,
               durationMs: Date.now() - startedAt,
             });
           }
         }
 
-        const rebuilt = safeRebuild();
+        const rebuilt = serverless ? { activityCount: 0, sessionCount: 0 } : safeRebuild();
         return json(res, 200, {
           ok: Boolean(rebuilt.activityCount),
           mode: 'rebuild',
@@ -200,7 +217,12 @@ export function createApi() {
 
       return json(res, 404, { error: 'Not found' });
     } catch (err) {
-      return json(res, 500, { error: err.message });
+      console.error('Coros API request failed', err);
+      return json(res, err?.code === 'PAYLOAD_TOO_LARGE' ? 413 : 500, {
+        error: err?.code === 'PAYLOAD_TOO_LARGE'
+          ? 'Charge utile trop volumineuse.'
+          : 'Service Coros temporairement indisponible.',
+      });
     }
   }
 
@@ -254,8 +276,44 @@ function json(res, status, body) {
 }
 
 async function readBody(req) {
+  if (req.body !== undefined) {
+    if (req.body == null) return {};
+    if (typeof req.body === 'object' && !Buffer.isBuffer(req.body)) return req.body;
+    if (typeof req.body === 'string') {
+      try { return JSON.parse(req.body); } catch { return {}; }
+    }
+    if (Buffer.isBuffer(req.body)) {
+      try { return JSON.parse(req.body.toString('utf8')); } catch { return {}; }
+    }
+  }
+
   const chunks = [];
-  for await (const c of req) chunks.push(c);
+  let size = 0;
+  for await (const c of req) {
+    size += c.length;
+    if (size > 65536) {
+      const error = new Error('Payload too large');
+      error.code = 'PAYLOAD_TOO_LARGE';
+      throw error;
+    }
+    chunks.push(c);
+  }
   if (!chunks.length) return {};
   try { return JSON.parse(Buffer.concat(chunks).toString('utf8')); } catch { return {}; }
+}
+
+function persistSnapshot(data, serverless) {
+  if (serverless) {
+    return { ok: false, message: 'Instantané renvoyé au compte sans écriture sur le filesystem Vercel.' };
+  }
+  try {
+    mkdirSync(dirname(SNAPSHOT_PATH), { recursive: true });
+    writeFileSync(SNAPSHOT_PATH, JSON.stringify(data, null, 2), 'utf8');
+    return { ok: true, message: null };
+  } catch (err) {
+    return {
+      ok: false,
+      message: `Instantané non écrit sur le filesystem (${err.message}) — données live servies depuis Coros.`,
+    };
+  }
 }

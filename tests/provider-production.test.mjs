@@ -1,7 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { emptySnapshot, loadClubCatalog, loadSnapshot, pushToWatch } from '../src/data/provider.js';
+import {
+  activityIdAfterRefresh,
+  emptySnapshot,
+  loadClubCatalog,
+  loadSnapshot,
+  pushToWatch,
+  saveSnapshotWithoutBlockingDisplay,
+} from '../src/data/provider.js';
 
 test('la production ne remplace jamais une source absente par des données de démo', async () => {
   const originalFetch = globalThis.fetch;
@@ -29,6 +36,47 @@ test('un snapshot partiel de production reste partiel et ne récupère pas les f
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test('les activités sont toujours présentées de la plus récente à la plus ancienne', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => ({
+    ok: true,
+    json: async () => ({
+      athlete: {},
+      sessions: [],
+      activities: [
+        { id: 'ancienne', date: '2026-09-11' },
+        { id: 'recente', date: '2026-09-15' },
+        { id: 'lundi', date: '2026-09-14' },
+      ],
+      meta: { source: 'coros-snapshot' },
+    }),
+  });
+  try {
+    const snapshot = await loadSnapshot({ allowFixtures: false });
+    assert.deepEqual(snapshot.activities.map((activity) => activity.id), ['recente', 'lundi', 'ancienne']);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('une synchronisation sélectionne la dernière activité reçue', () => {
+  const activities = [{ id: 'recente' }, { id: 'ancienne' }];
+  assert.equal(activityIdAfterRefresh('ancienne', activities, true), 'recente');
+  assert.equal(activityIdAfterRefresh('ancienne', activities, false), 'ancienne');
+  assert.equal(activityIdAfterRefresh('absente', activities, false), 'recente');
+});
+
+test('une panne Supabase ne masque pas le snapshot fraîchement récupéré', async () => {
+  const snapshot = { activities: [{ id: 'recente' }], meta: { source: 'coros-snapshot' } };
+  const repository = { saveSnapshot: async () => { throw new Error('RLS'); } };
+
+  const displayed = await saveSnapshotWithoutBlockingDisplay(repository, snapshot, 'coros');
+
+  assert.equal(displayed.activities[0].id, 'recente');
+  assert.match(displayed.meta.degraded, /sauvegarde dans le compte a échoué/i);
+  assert.notEqual(displayed, snapshot);
 });
 
 test('l’état vide est un nouvel objet immuable entre deux lectures', () => {

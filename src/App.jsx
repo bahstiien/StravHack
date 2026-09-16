@@ -4,7 +4,10 @@ import PlanningScreen from './screens/PlanningScreen.jsx';
 import AnalysisScreen from './screens/AnalysisScreen.jsx';
 import PpgScreen, { ExerciseSheet } from './screens/PpgScreen.jsx';
 import SessionScreen from './screens/SessionScreen.jsx';
-import { initialSnapshot, loadClubCatalog, loadSnapshot } from './data/provider.js';
+import {
+  activityIdAfterRefresh, initialSnapshot, loadClubCatalog, loadSnapshot,
+  saveSnapshotWithoutBlockingDisplay,
+} from './data/provider.js';
 import { INK, RULE, HAIR, MUTED, button } from './lib/ui.js';
 import { isoDate } from './data/model.js';
 import { buildPlan } from './data/plan.js';
@@ -79,17 +82,19 @@ export default function App({ repository }) {
   const [checkinEditing, setCheckinEditing] = useState(false);
   const [checkinError, setCheckinError] = useState('');
 
-  const refresh = useCallback(async (currentGoals, currentEquipment, forceRemote = false, currentLoadLevel) => {
+  const refresh = useCallback(async (currentGoals, currentEquipment, forceRemote = false, currentLoadLevel, syncedSnapshot = null) => {
     setSyncing(true);
     try {
-      let data = forceRemote ? null : await repository.loadLatestSnapshot();
+      let data = syncedSnapshot || (forceRemote ? null : await repository.loadLatestSnapshot());
       if (!data) {
         data = await loadSnapshot();
         // 'coros-mcp' vient du pont en direct, 'coros-snapshot' du relevé sur
         // disque : dans les deux cas la donnée sort de la montre, et l'étiqueter
         // 'legacy' rendrait la table illisible.
         const corosSourced = data?.meta?.source === 'coros-mcp' || data?.meta?.source === 'coros-snapshot';
-        await repository.saveSnapshot(data, corosSourced ? 'coros' : 'legacy');
+        data = await saveSnapshotWithoutBlockingDisplay(
+          repository, data, corosSourced ? 'coros' : 'legacy',
+        );
       }
 
       // Le calendrier du club est une saisie manuelle : le club annonce ses
@@ -132,7 +137,7 @@ export default function App({ repository }) {
         // returns an empty list rather than emptying the screen.
         exercises: data.exercises?.length ? data.exercises : prev.exercises,
       }));
-      setActivityId((id) => id ?? data.activities[0]?.id ?? null);
+      setActivityId((id) => activityIdAfterRefresh(id, data.activities, forceRemote));
       setWeekOffset((current) => (current === 0 ? openingWeekOffset(merged) : current));
     } finally {
       setSyncing(false);
@@ -418,7 +423,7 @@ export default function App({ repository }) {
     <main className="app-shell">
       <div className="app-container">
         <div className="app-sync-status">
-          <SyncBar meta={snapshot.meta} syncing={syncing} onSync={() => refresh(undefined, undefined, true)} />
+          <SyncBar meta={snapshot.meta} syncing={syncing} onSync={(synced) => refresh(undefined, undefined, true, undefined, synced)} />
         </div>
         <div className="app-viewport">
           <div style={{

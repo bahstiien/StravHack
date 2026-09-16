@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { INK, RED, RED_DEEP, MUTED, MUTED_2, RULE, button, kicker } from '../lib/ui.js';
+import { requestCorosSync, shouldReloadAfterSync } from '../data/sync-api.js';
 
 /**
  * Le bandeau de synchronisation, sous le téléphone.
@@ -25,12 +26,11 @@ export default function SyncBar({ meta, syncing, onSync }) {
     setBusy(true);
     setResult(null);
     try {
-      const res = await fetch('/api/sync', { method: 'POST' });
-      const body = await res.json().catch(() => ({}));
+      const body = await requestCorosSync();
       setResult(body);
       // On recharge l'instantané quel que soit le mode : même une
       // reconstruction peut avoir changé quelque chose.
-      await onSync();
+      if (shouldReloadAfterSync(body)) await onSync(body.snapshot ?? null);
     } catch (err) {
       setResult({ ok: false, mode: 'error', error: `Pont injoignable — ${err.message}` });
     } finally {

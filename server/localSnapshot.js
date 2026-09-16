@@ -199,7 +199,7 @@ export function buildLocalSnapshot() {
       metrics,
       verdict: '', // écrit à l'exécution par src/data/commentary.js
     };
-  }).sort((x, y) => (y.streams.hr.length - x.streams.hr.length) || y.date.localeCompare(x.date));
+  }).sort((x, y) => y.date.localeCompare(x.date));
 
   const byDate = new Map();
   for (const a of coros.activities) {

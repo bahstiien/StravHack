@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getBrowserSupabaseClient } from '../data/supabase-client.js';
 import { createSupabaseDataRepository } from '../data/supabase-repository.js';
 import { signInWithPassword } from '../data/auth.js';
+import { setApiAccessToken } from '../data/api-client.js';
 
 export default function AuthGate({ children }) {
   const [client] = useState(() => getBrowserSupabaseClient());
@@ -16,6 +17,11 @@ export default function AuthGate({ children }) {
     const { data } = client.auth.onAuthStateChange((_event, next) => setSession(next));
     return () => data.subscription.unsubscribe();
   }, [client]);
+
+  useEffect(() => {
+    setApiAccessToken(session?.access_token);
+    return () => setApiAccessToken(null);
+  }, [session]);
 
   async function signIn(event) {
     event.preventDefault();
