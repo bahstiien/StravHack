@@ -52,7 +52,12 @@ export function generateReminders({
     for (const change of planningChanges.filter((item) => item.important)) add('planning-change', change.id, { reason: change.reason || 'Le planning a changé de façon importante.', action: 'Consulter les changements.', href: '/planning/semaine', priority: 'high', expiresAt: expires(today, 2) });
   }
   if (settings.recoveryAlerts !== false) {
-    const painful = feedback.filter((item) => Number(item.pain) >= 4).sort((a, b) => b.date.localeCompare(a.date));
+    // Le contrat post-séance courant expose un booléen. Number(true) vaut 1,
+    // donc l'ancien seuil numérique rendait ce rappel impossible en pratique.
+    // On conserve la compatibilité avec les anciens feedbacks qui stockaient
+    // encore une intensité de douleur.
+    const painful = feedback.filter((item) => item.pain === true || Number(item.pain) >= 4)
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)));
     if (painful.length >= 2) add('persistent-pain', painful[0].sessionId || 'pain', { reason: 'Une douleur significative persiste sur plusieurs retours.', action: 'Réduire la charge et réévaluer la douleur.', href: '/planning/carnet', priority: 'urgent', expiresAt: expires(today, 2) });
     if (Number(load?.[0]?.ratio) >= 1.1) add('insufficient-recovery', today, { reason: 'La charge récente indique une récupération insuffisante.', action: 'Consulter l’analyse avant de vous entraîner.', href: '/analyse', priority: 'urgent', expiresAt: expires(today, 1) });
   }

@@ -18,6 +18,15 @@ import { loadConfig, isConfigured, ROOT } from './config.js';
 const CACHE_MS = Number(process.env.SNAPSHOT_TTL_MS || 5 * 60 * 1000);
 const SNAPSHOT_FILE = resolve(ROOT, 'public/coros-snapshot.json');
 
+export function validWorkoutPayload(value, sessionId) {
+  return Boolean(value && typeof value === 'object'
+    && typeof value.id === 'string' && value.id === sessionId
+    && typeof value.title === 'string' && value.title.trim()
+    && /^\d{4}-\d{2}-\d{2}$/.test(String(value.date || ''))
+    && ['TRAIL', 'PPG'].includes(value.type)
+    && Array.isArray(value.steps));
+}
+
 export function createApi() {
   const config = loadConfig();
   const coros = new CorosClient(config);
@@ -155,7 +164,7 @@ export function createApi() {
       }
 
       if (url.pathname === '/api/push-workout' && req.method === 'POST') {
-        const { sessionId } = await readBody(req);
+        const { sessionId, session: submittedSession } = await readBody(req);
         if (!sessionId) return json(res, 400, { error: 'sessionId manquant' });
         if (!configured) {
           return json(res, 200, {
@@ -165,7 +174,9 @@ export function createApi() {
         }
 
         const snap = await snapshot();
-        const session = snap.sessions?.find((s) => s.id === sessionId);
+        const session = validWorkoutPayload(submittedSession, sessionId)
+          ? submittedSession
+          : snap.sessions?.find((s) => s.id === sessionId);
         if (!session) return json(res, 200, { ok: false, error: 'Séance introuvable' });
 
         const result = await coros.call('pushWorkout', {

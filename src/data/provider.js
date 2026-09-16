@@ -108,7 +108,7 @@ export async function pushToWatch(session) {
     const res = await fetch('/api/push-workout', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ sessionId: session.id }),
+      body: JSON.stringify({ sessionId: session.id, session }),
     });
     const body = await res.json().catch(() => ({}));
     if (body.ok) return { ok: true, message: body.message || 'Séance envoyée sur la montre.' };

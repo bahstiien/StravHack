@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { emptySnapshot, loadClubCatalog, loadSnapshot } from '../src/data/provider.js';
+import { emptySnapshot, loadClubCatalog, loadSnapshot, pushToWatch } from '../src/data/provider.js';
 
 test('la production ne remplace jamais une source absente par des données de démo', async () => {
   const originalFetch = globalThis.fetch;
@@ -43,6 +43,23 @@ test('les séances club publiques restent disponibles sans catalogue Supabase', 
   globalThis.fetch = async () => ({ ok: true, json: async () => ({ day: 2, sessions: [{ date: '2026-09-15', name: 'Pyramide' }] }) });
   try {
     assert.deepEqual(await loadClubCatalog(), { day: 2, sessions: [{ date: '2026-09-15', name: 'Pyramide' }] });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('une séance générée côté app est envoyée intégralement au pont Coros', async () => {
+  const originalFetch = globalThis.fetch;
+  let request;
+  globalThis.fetch = async (url, options) => {
+    request = { url, options };
+    return { ok: true, json: async () => ({ ok: true }) };
+  };
+  const session = { id: 'plan-2026-09-20', title: 'Sortie longue', date: '2026-09-20', type: 'TRAIL', steps: [{ duration: 600 }] };
+  try {
+    assert.equal((await pushToWatch(session)).ok, true);
+    assert.equal(request.url, '/api/push-workout');
+    assert.deepEqual(JSON.parse(request.options.body), { sessionId: session.id, session });
   } finally {
     globalThis.fetch = originalFetch;
   }

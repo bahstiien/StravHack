@@ -60,3 +60,14 @@ test('une séance passée non réalisée expire après son rappel et ne se rép�
   assert.equal(missed.dedupeKey, 'missed-workout:missed');
   assert.ok(new Date(missed.expiresAt) > now);
 });
+
+test('deux feedbacks réels avec douleur déclenchent le rappel de douleur persistante', () => {
+  const result = generateReminders({
+    now, settings,
+    feedback: [
+      { activityId: 'a1', sessionId: 's1', date: '2026-09-13', pain: true },
+      { activityId: 'a2', sessionId: 's2', date: '2026-09-12', pain: true },
+    ],
+  });
+  assert.equal(result.some((item) => item.type === 'persistent-pain'), true);
+});
