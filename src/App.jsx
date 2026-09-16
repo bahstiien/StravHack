@@ -446,6 +446,7 @@ export default function App({ repository }) {
                       today={today}
                       conflicts={snapshot.planningConflicts || []}
                       checkin={checkin}
+                      embedded
                       onOpenCheckin={openCheckin}
                       onEditCheckin={() => openCheckinForm(true)}
                     />

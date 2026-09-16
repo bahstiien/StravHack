@@ -3,6 +3,7 @@ import { HAIR, INK, MUTED_2, RULE, button } from '../lib/ui.js';
 import MonthView from '../components/MonthView.jsx';
 import TrainingLogView from '../components/TrainingLogView.jsx';
 import ProjectionView from '../components/ProjectionView.jsx';
+import { loadPlanningView, nextPlanningView, normalizePlanningView, savePlanningView } from '../data/planning-view.js';
 
 const VIEWS = [['week', 'SEMAINE'], ['month', 'MOIS'], ['log', 'CARNET']];
 
@@ -11,11 +12,8 @@ export default function PlanningScreen({
   projection = null, monthlyStats = null, month: controlledMonth, today = new Date(), onOpenSession, onViewChange,
 }) {
   const [view, setView] = useState(() => {
-    if (VIEWS.some(([key]) => key === initialView)) return initialView;
-    try {
-      const saved = globalThis.localStorage?.getItem('denivele.planning.view');
-      return VIEWS.some(([key]) => key === saved) ? saved : 'week';
-    } catch { return 'week'; }
+    if (initialView != null) return normalizePlanningView(initialView);
+    return loadPlanningView();
   });
   const [month, setMonth] = useState(controlledMonth || new Date(today.getFullYear(), today.getMonth(), 1));
   const [showProjection, setShowProjection] = useState(false);
@@ -24,14 +22,25 @@ export default function PlanningScreen({
   function selectView(next) {
     setView(next);
     setShowProjection(false);
-    try { globalThis.localStorage?.setItem('denivele.planning.view', next); } catch { /* La navigation reste utilisable sans stockage local. */ }
+    savePlanningView(next);
     onViewChange?.(next);
+  }
+  function navigateTabs(event) {
+    let next = null;
+    if (event.key === 'ArrowRight') next = nextPlanningView(view, 1);
+    if (event.key === 'ArrowLeft') next = nextPlanningView(view, -1);
+    if (event.key === 'Home') next = 'week';
+    if (event.key === 'End') next = 'log';
+    if (!next) return;
+    event.preventDefault();
+    selectView(next);
+    globalThis.document?.getElementById(`planning-tab-${next}`)?.focus();
   }
   const shiftMonth = (delta) => setMonth((current) => new Date(current.getFullYear(), current.getMonth() + delta, 1));
 
   return <div style={{ paddingTop: 58 }}>
     <nav role="tablist" aria-label="Vues du planning" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', borderTop: RULE, borderBottom: RULE }}>
-      {VIEWS.map(([key, label]) => <button key={key} id={`planning-tab-${key}`} type="button" role="tab" aria-selected={view === key} aria-controls="planning-active-panel" onClick={() => selectView(key)} style={button({ padding: '13px 10px', borderRight: HAIR, textAlign: 'center', background: view === key ? INK : 'transparent', color: view === key ? 'var(--color-bg)' : MUTED_2, fontSize: 9.5 })}>{label}</button>)}
+      {VIEWS.map(([key, label]) => <button key={key} id={`planning-tab-${key}`} type="button" role="tab" aria-selected={view === key} aria-controls="planning-active-panel" tabIndex={view === key ? 0 : -1} onKeyDown={navigateTabs} onClick={() => selectView(key)} style={button({ padding: '13px 10px', borderRight: HAIR, textAlign: 'center', background: view === key ? INK : 'transparent', color: view === key ? 'var(--color-bg)' : MUTED_2, fontSize: 9.5 })}>{label}</button>)}
     </nav>
     <main id="planning-active-panel" role="tabpanel" aria-labelledby={`planning-tab-${view}`} tabIndex={0}>
       {view === 'week' && (renderWeek?.() || weekContent || <EmptyWeek />)}

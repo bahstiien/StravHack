@@ -45,6 +45,9 @@ test('l’espace Planning expose trois onglets accessibles', () => {
   assert.match(html, /role="tablist"/);
   for (const label of ['SEMAINE', 'MOIS', 'CARNET']) assert.ok(text(html).includes(label));
   assert.match(html, /aria-selected="true"/);
+  assert.equal((html.match(/tabindex="0"/g) || []).length, 2, 'onglet actif et panneau seulement');
+  assert.equal((html.match(/tabindex="-1"/g) || []).length, 2, 'les deux onglets inactifs sortent du parcours Tab');
+  assert.match(html, /aria-labelledby="planning-tab-month"/);
 });
 
 test('le mois affiche plusieurs séances, objectif, bloc et commandes explicites', () => {

@@ -35,7 +35,7 @@ function isoWeek(d) {
 
 export default function WeekScreen({
   snapshot, weekOffset, onShiftWeek, onOpenSession, generating, today, conflicts = [],
-  checkin = null, onOpenCheckin, onEditCheckin,
+  checkin = null, onOpenCheckin, onEditCheckin, embedded = false,
 }) {
   const { sessions } = snapshot;
   const ctx = useMemo(() => ({
@@ -86,7 +86,7 @@ export default function WeekScreen({
   );
 
   return (
-    <div style={{ padding: '58px 0 0' }}>
+    <div style={{ padding: embedded ? '0' : '58px 0 0' }}>
       <header style={{
         display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
         gap: 12, padding: '0 18px 12px',
